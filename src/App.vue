@@ -1,15 +1,40 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <v-app>
+    <v-navigation-drawer app v-model="drawer" :mini-variant="mini" permanent>
+
+    </v-navigation-drawer>
+    <v-app-bar>
+      <h1 >{{ "SIRIUS MARMORARIA" }}
+      </h1>
+      <v-spacer></v-spacer>
+      <v-tabs v-model="tab" density="comfortable">
+        <v-tab :hide-slider="true" value="home"><h2>Home</h2></v-tab>
+        <v-tab :hide-slider="true" value="about"><h2>Sobre mim</h2></v-tab>
+        <v-tab :hide-slider="true" value="portfolio"><h2>Portifolio</h2></v-tab>
+        <v-tab :hide-slider="true" value="contact"><h2>Contato</h2></v-tab>
+      </v-tabs>
+    </v-app-bar>
+    <v-main>
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
+    </v-main>
+
+    <v-footer app>
+
+    </v-footer>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      drawer: false,
+      mini: true,
+      tab: null,
+    }
   }
 }
 </script>
