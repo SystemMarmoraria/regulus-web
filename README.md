@@ -1,4 +1,4 @@
-# sirius-system
+# marmoraria-web
 
 ## Project setup
 ```
