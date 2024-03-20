@@ -4,17 +4,16 @@
 
     </v-navigation-drawer>
     <v-app-bar>
-      <h1 >{{ "SIRIUS MARMORARIA" }}
-      </h1>
+      <img src="images/logo-sirius.png" alt="sirius logo" width="10%">
       <v-spacer></v-spacer>
       <v-tabs v-model="tab" density="comfortable">
-        <v-tab :hide-slider="true" value="home"><h2>Home</h2></v-tab>
-        <v-tab :hide-slider="true" value="about"><h2>Sobre mim</h2></v-tab>
-        <v-tab :hide-slider="true" value="portfolio"><h2>Portifolio</h2></v-tab>
-        <v-tab :hide-slider="true" value="contact"><h2>Contato</h2></v-tab>
+        <v-tab :hide-slider="true" value="home"><h4>Home</h4></v-tab>
+        <v-tab :hide-slider="true" value="about"><h4>Sobre nós</h4></v-tab>
+        <v-tab :hide-slider="true" value="portfolio"><h4>Produtos</h4></v-tab>
+        <v-tab :hide-slider="true" value="contact"><h4>Contato</h4></v-tab>
       </v-tabs>
     </v-app-bar>
-    <v-main>
+    <v-main class="bg-indigo-darken-4">
       <v-container fluid>
         <router-view></router-view>
       </v-container>
