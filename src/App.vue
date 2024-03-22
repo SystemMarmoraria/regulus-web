@@ -63,6 +63,6 @@ export default {
   background-image: linear-gradient(45deg, #ff0 0%, #f0f 100%);
 }
 .gradient {
-  -webkit-mask-image: linear-gradient(to bottom, transparent 4%,white 40%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 5%,white 40%);
 }
 </style>
