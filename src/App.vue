@@ -21,14 +21,15 @@
         </v-tab>
       </v-tabs>
     </v-app-bar>
-    <v-parallax class="gradient" src="/images/home.png" style="height: 25em;">
+    <v-parallax class="gradient" src="/images/home.png" style="height: 40em;">
       <div class="d-flex flex-column fill-height justify-center align-center text-indigo-darken-4">
-        <h1 class="text-h3 font-weight-thin mb-4">
+        <h1 class="text-h2 mb-4">Sirius Marmoraria</h1>
+        <h2 class="text-h3 font-weight-thin mb-4">
           Qualidade e excelência em cada detalhe.
-        </h1>
+        </h2>
       </div>
     </v-parallax>
-    <v-main class="bg-indigo-darken-4">
+    <v-main>
       <router-view></router-view>
     </v-main>
     <v-footer app>
@@ -58,10 +59,9 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
-.header-main {
-  background-image: linear-gradient(45deg, #ff0 0%, #f0f 100%);
-}
+ h2  {
+  text-shadow: 3px 3px 3px black;
+ }
 .gradient {
   -webkit-mask-image: linear-gradient(to bottom, transparent 5%,white 40%);
 }
