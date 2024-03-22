@@ -3,10 +3,10 @@
     <v-navigation-drawer app v-model="drawer" :mini-variant="mini" permanent>
 
     </v-navigation-drawer>
-    <v-app-bar color="transparent"  :elevation="0">
+    <v-app-bar color="secondary" :scroll-threshold="scroll" :elevation="10">
       <img src="images/logo-sirius.png" alt="sirius logo" width="10%">
       <v-spacer></v-spacer>
-      <v-tabs class="text-indigo-darken-4" v-model="tab" density="comfortable">
+      <v-tabs class="text-primary" v-model="tab" density="comfortable">
         <v-tab :hide-slider="true" value="home">
           <h4>Home</h4>
         </v-tab>
@@ -22,11 +22,10 @@
       </v-tabs>
     </v-app-bar>
     <v-parallax class="gradient" src="/images/home.png" style="height: 40em;">
-      <div class="d-flex flex-column fill-height justify-center align-center text-indigo-darken-4">
-        <h1 class="text-h2 mb-4">Sirius Marmoraria</h1>
-        <h2 class="text-h3 font-weight-thin mb-4">
+      <div class="d-flex flex-column fill-height justify-center align-center text-indigo-accent-4">
+        <h1 class="text-h2 font-weight-thin mb-4">
           Qualidade e excelência em cada detalhe.
-        </h2>
+        </h1>
       </div>
     </v-parallax>
     <v-main>
@@ -46,6 +45,7 @@ export default {
       drawer: false,
       mini: true,
       tab: null,
+      scroll: 0,
     }
   }
 }
@@ -59,10 +59,12 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
- h2  {
-  text-shadow: 3px 3px 3px black;
- }
-.gradient {
-  -webkit-mask-image: linear-gradient(to bottom, transparent 5%,white 40%);
+
+h1 {
+  text-shadow: 1px 1px 1px #304FFE;
+}
+
+.gradiente {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 5%, white 40%);
 }
 </style>
