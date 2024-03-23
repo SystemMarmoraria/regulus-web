@@ -1,7 +1,7 @@
 // Styles
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
-import colors from 'vuetify/lib/util/colors'
+//import colors from 'vuetify/lib/util/colors'
 // Vuetify
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
@@ -11,8 +11,8 @@ export default createVuetify({
     themes: {
       light: {          
         colors: {
-          primary: "#01579B", 
-          secondary: colors.grey.lighten3, 
+          primary: "#1A237E", 
+          secondary: "#CFD8DC", 
           successColor: '#628b48',  
           warningColor: '#FFC43D',  
           errorColor: '#d74d45',  
