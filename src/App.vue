@@ -29,7 +29,7 @@
         </h2>
       </div>
     </v-parallax>
-    <v-main>
+    <v-main class="bg-indigo-darken-4">
       <router-view></router-view>
     </v-main>
     <v-footer app>
