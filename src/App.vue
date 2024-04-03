@@ -21,14 +21,7 @@
         </v-tab>
       </v-tabs>
     </v-app-bar>
-    <v-parallax class="gradient" src="/images/home.png" style="height: 40em;">
-      <div class="d-flex flex-column fill-height justify-center align-center text-indigo-accent-4">
-        <h1 class="text-h2 font-weight-thin mb-4">
-          Qualidade e excelência em cada detalhe.
-        </h1>
-      </div>
-    </v-parallax>
-    <v-main class="bg-indigo-darken-4">
+    <v-main class="bg-primary">
       <router-view></router-view>
     </v-main>
     <v-footer app>
