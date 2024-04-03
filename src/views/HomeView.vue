@@ -8,7 +8,6 @@
             </div>
         </v-parallax>
         <h2>Uma empresa voltada ao consumidor</h2>
-        <v-divider inset></v-divider>
         <v-container fluid style="margin-top: 15px;">
             <v-row style="margin-bottom: 1.5em;"><v-col>
                     <v-card variant="tonal" style="padding: 15px;" class="text-h6 font-weight-regular"> A <strong
@@ -59,7 +58,6 @@
                 </v-col>
             </v-row>
             <h2>Nossos principais produtos</h2>
-            <v-divider inset></v-divider>
             <v-row style="margin-top: 15px; margin-bottom: 1.5em">
                 <v-carousel class="rounded-lg" style="margin: 1em" show-arrows="hover" cycle>
                     <v-carousel-item color="secondary" v-for="i in 4" :key="i">
@@ -72,35 +70,90 @@
                 </v-carousel>
             </v-row>
             <h2>O que dizem sobre nós</h2>
-            <v-divider inset></v-divider>
-            <v-row>
-                <v-col><v-card class="mx-auto" color="secondary" elevation="10" width="360">
-                        <div class="d-flex justify-between">
-                            <v-card-title class="flex-grow-1 flex-column align-start">
-                                <div class="text-h5">
-                                    Title -
-                                </div>
-                                <div class="text-h6 font-weight-thin">Name</div>
-                                <div class="text-h6 font-weight-thin">Rating</div>
-                            </v-card-title>
-                        </div>
-                        <v-divider></v-divider>
-                        <v-rating v-model="rating" active-color="yellow-accent-4" color="white" size="18"
-                            half-increments hover></v-rating>
+            <v-card variant="tonal" class="mt-4">
+            <v-row class="mx-4">
+                <v-col cols="2" v-for="(review, index) in reviews" :key="index"><v-card class="my-4">
+                        <v-card-title>
+                            <v-avatar class="mr-3">
+                                <img :src="review.avatar" alt="Avatar">
+                            </v-avatar>
+                            <span>{{ review.username }}</span>
+                        </v-card-title>
+                        <v-divider class="mb-4"></v-divider>
+                        <v-card-subtitle class="text-body-1">
+                            {{ review.comment }}
+                        </v-card-subtitle>
+                        <v-card-text><v-rating v-model="review.rating" background-color="transparent" color="amber"
+                                readonly></v-rating></v-card-text>
+                        <v-card-actions class="d-flex justify-center">
+                            <v-icon color="primary">mdi-thumb-up-outline</v-icon>
+                            <span class="mx-2">{{ " " + review.likes }}</span>
+                            <v-icon color="error">mdi-thumb-down-outline</v-icon>
+                            <span>{{ " " + review.dislikes }}</span>
+                        </v-card-actions>
                     </v-card></v-col>
-                <v-col></v-col>
-                <v-col></v-col>
-                <v-col></v-col>
-                <v-col></v-col>
-                <v-col></v-col>
             </v-row>
+            </v-card>
         </v-container>
     </div>
 </template>
 
 <script>
 export default {
-
+    data() {
+        return {
+            reviews: [
+                {
+                    username: 'John Doe',
+                    avatar: 'https://via.placeholder.com/100',
+                    rating: 4,
+                    comment: 'Ótimo produto, estou muito satisfeito!',
+                    likes: 10,
+                    dislikes: 2
+                },
+                {
+                    username: 'Jane Smith',
+                    avatar: 'https://via.placeholder.com/100',
+                    rating: 5,
+                    comment: 'Adorei! Recomendo a todos.',
+                    likes: 15,
+                    dislikes: 0
+                },
+                {
+                    username: 'Michael Johnson',
+                    avatar: 'https://via.placeholder.com/100',
+                    rating: 3,
+                    comment: 'É ok, poderia ser melhor.',
+                    likes: 5,
+                    dislikes: 3
+                },
+                {
+                    username: 'Michael Johnson',
+                    avatar: 'https://via.placeholder.com/100',
+                    rating: 3,
+                    comment: 'É ok, poderia ser melhor.',
+                    likes: 5,
+                    dislikes: 3
+                },
+                {
+                    username: 'Michael Johnson',
+                    avatar: 'https://via.placeholder.com/100',
+                    rating: 3,
+                    comment: 'É ok, poderia ser melhor.',
+                    likes: 5,
+                    dislikes: 3
+                },
+                {
+                    username: 'Michael Johnson',
+                    avatar: 'https://via.placeholder.com/100',
+                    rating: 3,
+                    comment: 'É ok, poderia ser melhor.',
+                    likes: 5,
+                    dislikes: 3
+                }
+            ]
+        }
+    }
 }
 </script>
 
