@@ -78,15 +78,22 @@
                         <div class="d-flex justify-between">
                             <v-card-title class="flex-grow-1 flex-column align-start">
                                 <div class="text-h5">
-                                    Title -
+                                   Title - 
                                 </div>
                                 <div class="text-h6 font-weight-thin">Name</div>
                                 <div class="text-h6 font-weight-thin">Rating</div>
                             </v-card-title>
                         </div>
                         <v-divider></v-divider>
-                        <v-rating v-model="rating" active-color="yellow-accent-4" color="white" size="18"
-                            half-increments hover></v-rating>
+                        <v-card-actions class="pa-4">
+                            Rate this album
+                            <v-spacer></v-spacer>
+                            <span class="text-grey-lighten-2 text-caption me-2">
+                                ({{ rating }})
+                            </span>
+                            <v-rating v-model="rating" active-color="yellow-accent-4" color="white" size="18"
+                                half-increments hover></v-rating>
+                        </v-card-actions>
                     </v-card></v-col>
                 <v-col></v-col>
                 <v-col></v-col>
