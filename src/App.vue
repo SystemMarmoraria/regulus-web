@@ -24,8 +24,31 @@
     <v-main class="bg-primary">
       <router-view></router-view>
     </v-main>
-    <v-footer app>
-
+    <v-footer app color="secondary">
+      <v-row>
+        <v-col>
+          <h4>Sirius Marmoraria</h4>
+          <v-btn variant="text">(19) 97600-4302</v-btn>
+          <p>(19) 2519-3131</p>
+        </v-col>
+        <v-col>
+          <h4>Endereço</h4>
+          <p>Logradouro:Avenida Benedito de Campos, 811
+            Bairro:Jardim do Trevo
+            Município/UF:Campinas, SP
+            CEP:13.030-100</p>
+        </v-col>
+        <v-col>
+          <h4>Email</h4>
+          <p>(19) XXXXX-XXXX</p>
+          <p>(19) XXXX-XXXX</p>
+        </v-col>
+        <v-col>
+          <h4>Redes Sociais</h4>
+          <p>(19) XXXXX-XXXX</p>
+          <p>(19) XXXX-XXXX</p>
+        </v-col>
+      </v-row>
     </v-footer>
   </v-app>
 </template>
