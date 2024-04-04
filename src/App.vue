@@ -28,25 +28,24 @@
       <v-row>
         <v-col>
           <h4>Sirius Marmoraria</h4>
-          <v-btn variant="text">(19) 97600-4302</v-btn>
-          <p>(19) 2519-3131</p>
+          <p><v-icon size="x-small" variant="text" icon="mdi-whatsapp"></v-icon>{{ " (19) 97600-4302" }}</p>
+          <p><v-icon size="x-small" variant="text" icon="mdi-phone"></v-icon>{{ " (19) 2519-3131" }}</p>
         </v-col>
         <v-col>
           <h4>Endereço</h4>
-          <p>Logradouro:Avenida Benedito de Campos, 811
-            Bairro:Jardim do Trevo
-            Município/UF:Campinas, SP
+
+          <p><v-icon size="small" icon="mdi-map-marker-outline"></v-icon>Avenida Benedito de Campos, 811 -
+            Jardim do Trevo, Campinas - SP
             CEP:13.030-100</p>
         </v-col>
         <v-col>
           <h4>Email</h4>
-          <p>(19) XXXXX-XXXX</p>
-          <p>(19) XXXX-XXXX</p>
+          <p><v-icon size="small" icon="mdi-email-outline"></v-icon>{{ " siriusmarmoraria@yahoo.com" }}</p>
         </v-col>
         <v-col>
           <h4>Redes Sociais</h4>
-          <p>(19) XXXXX-XXXX</p>
-          <p>(19) XXXX-XXXX</p>
+          <v-icon color="blue-darken-4" class="cursor-pointer" size="x-large" icon="mdi-facebook" start></v-icon>
+          <v-icon color="pink-accent-3" class="cursor-pointer" size="x-large" icon="mdi-instagram" end></v-icon>
         </v-col>
       </v-row>
     </v-footer>
