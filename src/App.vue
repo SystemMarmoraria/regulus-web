@@ -1,58 +1,17 @@
 <template>
   <v-app>
-    <v-navigation-drawer app v-model="drawer" :mini-variant="mini" permanent>
-
-    </v-navigation-drawer>
-    <v-app-bar color="secondary" :scroll-threshold="scroll" :elevation="10">
-      <img src="images/logo-sirius.png" alt="sirius logo" width="10%">
-      <v-spacer></v-spacer>
-      <v-tabs class="text-primary" v-model="tab" density="comfortable">
-        <v-tab :hide-slider="true" value="home">
-          <h4>Home</h4>
-        </v-tab>
-        <v-tab :hide-slider="true" value="about">
-          <h4>Sobre nós</h4>
-        </v-tab>
-        <v-tab :hide-slider="true" value="portfolio">
-          <h4>Produtos</h4>
-        </v-tab>
-        <v-tab :hide-slider="true" value="contact">
-          <h4>Contato</h4>
-        </v-tab>
-      </v-tabs>
-    </v-app-bar>
-    <v-main class="bg-primary">
+    <v-navigation-drawer app v-model="drawer" :mini-variant="mini" permanent></v-navigation-drawer>
+    <v-main class="bg-primary" ref="main">
       <router-view></router-view>
     </v-main>
-    <v-footer app color="secondary">
-      <v-row>
-        <v-col>
-          <h4>Sirius Marmoraria</h4>
-          <p><v-icon size="x-small" variant="text" icon="mdi-whatsapp"></v-icon>{{ " (19) 97600-4302" }}</p>
-          <p><v-icon size="x-small" variant="text" icon="mdi-phone"></v-icon>{{ " (19) 2519-3131" }}</p>
-        </v-col>
-        <v-col>
-          <h4>Endereço</h4>
-
-          <p><v-icon size="small" icon="mdi-map-marker-outline"></v-icon>Avenida Benedito de Campos, 811 -
-            Jardim do Trevo, Campinas - SP
-            CEP:13.030-100</p>
-        </v-col>
-        <v-col>
-          <h4>Email</h4>
-          <p><v-icon size="small" icon="mdi-email-outline"></v-icon>{{ " siriusmarmoraria@yahoo.com" }}</p>
-        </v-col>
-        <v-col>
-          <h4>Redes Sociais</h4>
-          <v-icon color="blue-darken-4" class="cursor-pointer" size="x-large" icon="mdi-facebook" start></v-icon>
-          <v-icon color="pink-accent-3" class="cursor-pointer" size="x-large" icon="mdi-instagram" end></v-icon>
-        </v-col>
-      </v-row>
+    <v-footer app color="secondary" ref="footer">
     </v-footer>
   </v-app>
 </template>
 
 <script>
+import anime from 'animejs';
+
 export default {
   name: 'App',
   data() {
@@ -61,9 +20,71 @@ export default {
       mini: true,
       tab: null,
       scroll: 0,
+    };
+  },
+  mounted() {
+    // Animação de entrada para o drawer
+    this.animateElement('slideInLeft', this.$refs.drawer);
+
+    // Animação de entrada para o conteúdo principal
+    this.animateElement('fadeIn', this.$refs.main.$el);
+
+    // Animação de entrada para o rodapé
+    this.animateElement('slideInUp', this.$refs.footer.$el);
+  },
+  methods: {
+    animateElement(animation, element) {
+      if (!element) return; // Verifica se o elemento é nulo
+
+      const animations = {
+        slideInLeft: {
+          translateX: ['-100%', '0'],
+          opacity: [0, 1]
+        },
+        fadeInDown: {
+          translateY: ['-100%', '0'],
+          opacity: [0, 1]
+        },
+        fadeIn: {
+          opacity: [0, 1]
+        },
+        slideInUp: {
+          translateY: ['100%', '0'],
+          opacity: [0, 1]
+        }
+        // Adicione mais animações conforme necessário
+      };
+
+      const selectedAnimation = animations[animation];
+
+      if (!selectedAnimation) {
+        console.error('Animation not found');
+        return;
+      }
+
+      anime({
+        targets: element,
+        ...selectedAnimation,
+        duration: 1000,
+        easing: 'easeOutExpo',
+        delay: anime.stagger(100),
+        direction: 'normal',
+        loop: false,
+        autoplay: true,
+        begin: function(anim) {
+          anim.animatables.forEach(function(animatable) {
+            animatable.target.style.visibility = 'visible';
+          });
+        },
+        complete: function(anim) {
+          anim.animatables.forEach(function(animatable) {
+            animatable.target.style.visibility = 'visible';
+          });
+        }
+      });
     }
   }
-}
+};
 </script>
 
 <style>
