@@ -92,29 +92,31 @@
                     <v-col cols="2" v-for="(review, index) in reviews" :key="index" class="cursor-pointer">
                         <v-dialog v-model="dialog">
                             <v-card class="my-4">
-                            <v-card-title>
-                                <v-avatar class="mr-3">
-                                    <v-icon>mdi-account-circle</v-icon>
-                                </v-avatar>
-                                <span>{{ review.username }}</span>
-                                <v-spacer></v-spacer>
-                                <v-icon>mdi-close-circle-outline</v-icon>
-                            </v-card-title>
-                            <v-divider class="mb-4"></v-divider>
-                            <v-card-subtitle class="text-body-1">
-                                {{ review.comment }}
-                            </v-card-subtitle>
-                            <v-card-text>
-                                <v-rating v-model="review.rating" background-color="transparent" color="amber"
-                                    readonly></v-rating>
-                            </v-card-text>
-                            <v-card-actions class="d-flex justify-center">
-                                <v-icon color="primary">mdi-thumb-up-outline</v-icon>
-                                <span class="mx-2">{{ " " + review.likes }}</span>
-                                <v-icon color="error">mdi-thumb-down-outline</v-icon>
-                                <span>{{ " " + review.dislikes }}</span>
-                            </v-card-actions>
-                        </v-card>
+                                <v-card-title>
+                                    <v-avatar class="mr-3">
+                                        <v-icon>mdi-account-circle</v-icon>
+                                    </v-avatar>
+                                    <span>{{ review.username }}</span>
+                                    <v-icon @click="dialog = false" style="float: right;" class="cursor-pointer closeButton"
+                                        :color="isHovering ? 'red' : null">
+                                        mdi-close-circle-outline
+                                    </v-icon>
+                                </v-card-title>
+                                <v-divider class="mb-4"></v-divider>
+                                <v-card-subtitle class="text-body-1">
+                                    {{ review.comment }}
+                                </v-card-subtitle>
+                                <v-card-text>
+                                    <v-rating v-model="review.rating" background-color="transparent" color="amber"
+                                        readonly></v-rating>
+                                </v-card-text>
+                                <v-card-actions class="d-flex justify-center">
+                                    <v-icon color="primary">mdi-thumb-up-outline</v-icon>
+                                    <span class="mx-2">{{ " " + review.likes }}</span>
+                                    <v-icon color="error">mdi-thumb-down-outline</v-icon>
+                                    <span>{{ " " + review.dislikes }}</span>
+                                </v-card-actions>
+                            </v-card>
                         </v-dialog>
                         <v-card class="my-4" @click="dialog = true">
                             <v-card-title>
@@ -148,7 +150,7 @@
                     <h4>Sirius Marmoraria</h4>
                     <p><v-icon size="x-small" variant="text" icon="mdi-whatsapp"></v-icon>{{ " (19) 97600-4302" }}</p>
                     <p><v-icon size="x-small" variant="text" icon="mdi-phone"></v-icon>{{ " (19) 2519-3131" }}</p>
-                </v-col>    
+                </v-col>
                 <v-col>
                     <h4>Endereço</h4>
 
@@ -288,4 +290,8 @@ export default {
 </script>
 
 
-<style></style>
+<style>
+.closeButton:hover {
+    color: red
+}
+</style>
