@@ -89,11 +89,11 @@
             <h2>Depoimento dos clientes</h2>
             <v-card variant="tonal" class="mt-4" ref="testimonials">
                 <v-row class="mx-4">
-                    <v-col cols="2" v-for="(review, index) in reviews" :key="index">
+                    <v-col cols="2" v-for="(review, index) in reviews" :key="index" class="cursor-pointer">
                         <v-card class="my-4">
                             <v-card-title>
                                 <v-avatar class="mr-3">
-                                    <img :src="review.avatar" alt="Avatar">
+                                    <v-icon>mdi-account-circle</v-icon>
                                 </v-avatar>
                                 <span>{{ review.username }}</span>
                             </v-card-title>
@@ -154,6 +154,7 @@ export default {
         return {
             reviews: [
                 {
+                    id: 0,
                     username: 'Cesar R. Scanavez',
                     avatar: 'https://via.placeholder.com/100',
                     rating: 5,
@@ -162,6 +163,7 @@ export default {
                     dislikes: 0
                 },
                 {
+                    id: 1,
                     username: 'Silvia Andrade',
                     avatar: 'https://via.placeholder.com/100',
                     rating: 5,
@@ -170,6 +172,7 @@ export default {
                     dislikes: 0
                 },
                 {
+                    id: 2,
                     username: 'Isadora Franco',
                     avatar: 'https://via.placeholder.com/100',
                     rating: 5,
@@ -178,6 +181,7 @@ export default {
                     dislikes: 0
                 },
                 {
+                    id: 3,
                     username: 'Priscilla Uzun Teixeira',
                     avatar: 'https://via.placeholder.com/100',
                     rating: 5,
@@ -186,6 +190,7 @@ export default {
                     dislikes: 0
                 },
                 {
+                    id: 4,
                     username: 'Renata Barreiros',
                     avatar: 'https://via.placeholder.com/100',
                     rating: 5,
@@ -194,6 +199,7 @@ export default {
                     dislikes: 0
                 },
                 {
+                    id: 5,
                     username: 'Rubens Lima',
                     avatar: 'https://via.placeholder.com/100',
                     rating: 5,
