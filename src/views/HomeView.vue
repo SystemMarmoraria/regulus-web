@@ -97,6 +97,8 @@
                                     <v-icon>mdi-account-circle</v-icon>
                                 </v-avatar>
                                 <span>{{ review.username }}</span>
+                                <v-spacer></v-spacer>
+                                <v-icon>mdi-close-circle-outline</v-icon>
                             </v-card-title>
                             <v-divider class="mb-4"></v-divider>
                             <v-card-subtitle class="text-body-1">
@@ -146,7 +148,7 @@
                     <h4>Sirius Marmoraria</h4>
                     <p><v-icon size="x-small" variant="text" icon="mdi-whatsapp"></v-icon>{{ " (19) 97600-4302" }}</p>
                     <p><v-icon size="x-small" variant="text" icon="mdi-phone"></v-icon>{{ " (19) 2519-3131" }}</p>
-                </v-col>
+                </v-col>    
                 <v-col>
                     <h4>Endereço</h4>
 
