@@ -89,36 +89,36 @@
             <h2>Depoimento dos clientes</h2>
             <v-card variant="tonal" class="mt-4" ref="testimonials">
                 <v-row class="mx-4">
-                    <v-col cols="2" v-for="(review, index) in reviews" :key="index" class="cursor-pointer">
+                    <v-col cols="2" v-for="(review, index) in reviews" :key="index" class="cursor-pointer" v-model="review.id">
                         <v-dialog v-model="dialog">
                             <v-card class="my-4">
                                 <v-card-title>
                                     <v-avatar class="mr-3">
                                         <v-icon>mdi-account-circle</v-icon>
                                     </v-avatar>
-                                    <span>{{ review.username }}</span>
+                                    <span>{{ reviewDialog.username }}</span>
                                     <v-icon @click="dialog = false" style="float: right;" class="cursor-pointer closeButton"
                                         :color="isHovering ? 'red' : null">
                                         mdi-close-circle-outline
                                     </v-icon>
                                 </v-card-title>
                                 <v-divider class="mb-4"></v-divider>
-                                <v-card-subtitle class="text-body-1">
-                                    {{ review.comment }}
+                                <v-card-subtitle class="text-body-1 text-wrap">
+                                    {{ reviewDialog.comment }}
                                 </v-card-subtitle>
                                 <v-card-text>
-                                    <v-rating v-model="review.rating" background-color="transparent" color="amber"
+                                    <v-rating v-model="reviewDialog.rating" background-color="transparent" color="amber"
                                         readonly></v-rating>
                                 </v-card-text>
                                 <v-card-actions class="d-flex justify-center">
                                     <v-icon color="primary">mdi-thumb-up-outline</v-icon>
                                     <span class="mx-2">{{ " " + review.likes }}</span>
                                     <v-icon color="error">mdi-thumb-down-outline</v-icon>
-                                    <span>{{ " " + review.dislikes }}</span>
+                                    <span>{{ " " + reviewDialog.dislikes }}</span>
                                 </v-card-actions>
                             </v-card>
                         </v-dialog>
-                        <v-card class="my-4" @click="dialog = true">
+                        <v-card class="my-4" @click="dialog = true, reviewDialog = filterAvaliations(review.id)">
                             <v-card-title>
                                 <v-avatar class="mr-3">
                                     <v-icon>mdi-account-circle</v-icon>
@@ -181,6 +181,7 @@ export default {
     data() {
         return {
             dialog: false,
+            reviewDialog: {},
             reviews: [
                 {
                     id: 0,
@@ -243,6 +244,10 @@ export default {
         this.animateElementsOnLoad();
     },
     methods: {
+        filterAvaliations(id) {
+            let review = this.reviews.find(review => (review.id === id))
+            return review
+        },
         animateElementsOnLoad() {
             anime.timeline({
                 easing: 'easeOutExpo',
