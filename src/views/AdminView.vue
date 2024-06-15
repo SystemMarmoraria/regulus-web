@@ -20,8 +20,8 @@
                                     v-mask-phone.br></v-text-field>
                             </v-col>
                             <v-col>
-                                <v-text-field v-model="contacts.telephone_number" :rules="[
-                                    () => !!contacts.telephone_number || 'O número do telefone precisa ser preenchido',
+                                <v-text-field v-model="contacts.phoneNumber" :rules="[
+                                    () => !!contacts.phoneNumber || 'O número do telefone precisa ser preenchido',
                                 ]" prepend-icon="mdi-phone" variant="solo" label="Telefone" v-mask="'(00) 0000-0000'"></v-text-field>
                             </v-col>
                         </v-row>
@@ -67,13 +67,15 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     data() {
         return {
             contacts: {
                 email: null,
                 address: null,
-                telephone_number: null,
+                phoneNumber: null,
                 mobile_phone_number: null,
                 link_face: null,
                 link_insta: null,
@@ -81,10 +83,20 @@ export default {
             }
         }
     },
+    mounted(){
+        this.getInfo();
+    },
     methods: {
     validateEmail(value) {
       const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return pattern.test(value) || 'E-mail inválido.';
+    },
+    getInfo(){
+        axios.get('api/contactInformation').then(Response => {
+            this.contacts = Response.data;
+        }).catch(error => {
+            console.log(error);
+        })
     }
   }
 };

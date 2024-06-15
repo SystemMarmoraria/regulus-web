@@ -47,16 +47,19 @@ import axios from 'axios';
 export default {
     data() {
         return {
-
+            errorMessage: null,
+            form: {
+                userName: null,
+                password: null
+            }
         };
     },
     methods: {
         login(){
-            console.log("aa")
             axios.post('api/Users/login', this.form, null).then(response => {
-                localStorage.setItem('accessToken', response);
-            }).catch(erro => {
-                console.log(erro.response.data);
+                localStorage.setItem('accessToken', response.data);
+            }).catch(error => {
+                this.errorMessage = error.response.status == 404 ? error.response.data : "Erro ao realizar login";
             })
         }
     }
