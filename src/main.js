@@ -5,8 +5,11 @@ import { loadFonts } from './plugins/webfontloader';
 import router from './router';
 import VueMask from '@devindex/vue-mask';
 import anime from 'animejs';
+import axiosPlugin from './plugins/axios';
 
 const app = createApp(App);
+
+app.use(axiosPlugin);
 
 loadFonts();
 

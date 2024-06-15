@@ -12,12 +12,12 @@
                                     <v-container>
                                         <v-row>
                                             <v-col cols="12">
-                                                <v-text-field label="E-mail" type="email" variant="solo"></v-text-field>
+                                                <v-text-field label="E-mail" v-model="form.userName" type="email" variant="solo"></v-text-field>
                                             </v-col>
                                         </v-row>
                                         <v-row>
                                             <v-col cols="12">
-                                                <v-text-field label="Senha" type="password"
+                                                <v-text-field v-model="form.password" label="Senha" type="password"
                                                     variant="solo"></v-text-field>
                                             </v-col>
                                         </v-row>
@@ -26,7 +26,7 @@
                                         <v-card-actions class="mt-1">
                                         <v-row>
                                             <v-col cols="12" width="100%">
-                                                <v-btn class="bg-primary">Entrar</v-btn>
+                                                <v-btn class="bg-primary" @click="login()">Entrar</v-btn>
                                             </v-col>
                                         </v-row>
                                     </v-card-actions>
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
     data() {
@@ -50,7 +51,14 @@ export default {
         };
     },
     methods: {
-
+        login(){
+            console.log("aa")
+            axios.post('api/Users/login', this.form, null).then(response => {
+                localStorage.setItem('accessToken', response);
+            }).catch(erro => {
+                console.log(erro.response.data);
+            })
+        }
     }
 };
 </script>
