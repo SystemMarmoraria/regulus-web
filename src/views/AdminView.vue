@@ -20,9 +20,9 @@
                                     v-mask-phone.br></v-text-field>
                             </v-col>
                             <v-col>
-                                <v-text-field v-model="contacts.phoneNumber" :rules="[
-                                    () => !!contacts.phoneNumber || 'O número do telefone precisa ser preenchido',
-                                ]" prepend-icon="mdi-phone" variant="solo" label="Telefone" v-mask="'(00) 0000-0000'"></v-text-field>
+                                <v-text-field v-model="phoneNumberMask "  :rules="[
+                                    () => !!phoneNumberMask  || 'O número do telefone precisa ser preenchido',
+                                ]" prepend-icon="mdi-phone" variant="solo" label="Telefone" v-mask="'(00) 00000-0000'"></v-text-field>
                             </v-col>
                         </v-row>
                         <v-row>
@@ -57,7 +57,7 @@
                     <v-divider></v-divider>
                     <v-card-actions class="bg-secondary">
                         <v-spacer>
-                            <v-btn variant="tonal" prepend-icon="mdi-content-save" color="primary">Salvar</v-btn>
+                            <v-btn variant="tonal" prepend-icon="mdi-content-save" @click="postInfo()" color="primary">Salvar</v-btn>
                         </v-spacer>
                     </v-card-actions>
                 </v-form>
@@ -80,7 +80,8 @@ export default {
                 link_face: null,
                 link_insta: null,
 
-            }
+            },
+            phoneNumberMask : null,
         }
     },
     mounted(){
@@ -94,10 +95,20 @@ export default {
     getInfo(){
         axios.get('api/contactInformation').then(Response => {
             this.contacts = Response.data;
+            this.phoneNumberMask = this.contacts.phoneNumber;
         }).catch(error => {
             console.log(error);
         })
-    }
+    },
+    postInfo(){
+        this.contacts.phoneNumberMask  = this.phoneNumberMask .replace(/\D/g, "");
+        console.log(this.contacts.phoneNumber)
+        axios.put('api/contactInformation', this.contacts).then(Response => {
+            console.log(Response.data)
+        }).catch(error => {
+            console.log(error);
+        })
+    },
   }
 };
 </script>
