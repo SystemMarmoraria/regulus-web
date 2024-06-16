@@ -3,7 +3,7 @@
         <v-app-bar color="secondary" :scroll-threshold="scroll" :elevation="10">
             <h2 style="margin-left: 5px;">AdminSirius</h2>
             <v-spacer></v-spacer>
-            <v-btn append-icon="mdi-logout" variant="plain">Sair</v-btn>
+            <v-btn append-icon="mdi-logout" @click="logOut()" variant="plain">Sair</v-btn>
         </v-app-bar>
         <v-container>
             <v-card class="mt-6">
@@ -58,7 +58,7 @@
                     <v-divider></v-divider>
                     <v-card-actions class="bg-secondary">
                         <v-spacer>
-                            <v-btn variant="tonal" prepend-icon="mdi-content-save" @click="postInfo()" color="primary">Salvar</v-btn>
+                            <v-btn variant="tonal" prepend-icon="mdi-content-save" @click="putInfo()" color="primary">Salvar</v-btn>
                         </v-spacer>
                     </v-card-actions>
                 </v-form>
@@ -77,10 +77,9 @@ export default {
                 email: null,
                 address: null,
                 phoneNumber: null,
-                mobile_phone_number: null,
-                link_face: null,
-                link_insta: null,
-
+                telPhonenumber: null,
+                linkFace: null,
+                linkInsta: null,
             },
             phoneNumberMask : null,
         }
@@ -101,14 +100,17 @@ export default {
             console.log(error);
         })
     },
-    postInfo(){
+    putInfo(){
         this.contacts.phoneNumberMask  = this.phoneNumberMask .replace(/\D/g, "");
-        console.log(this.contacts.phoneNumber)
+
         axios.put('api/contactInformation', this.contacts).then(Response => {
             console.log(Response.data)
         }).catch(error => {
             console.log(error);
         })
+    },
+    logOut(){
+        localStorage.clear();
     },
   }
 };
