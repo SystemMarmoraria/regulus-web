@@ -21,9 +21,9 @@
                                     v-mask-phone.br></v-text-field>
                             </v-col>
                             <v-col>
-                                <v-text-field v-model="contacts.telephone_number" :rules="[
-                                    () => !!contacts.telephone_number || 'O número do telefone precisa ser preenchido',
-                                ]" prepend-icon="mdi-phone" variant="solo" label="Telefone" v-mask="'(00) 0000-0000'"></v-text-field>
+                                <v-text-field v-model="phoneNumberMask "  :rules="[
+                                    () => !!phoneNumberMask  || 'O número do telefone precisa ser preenchido',
+                                ]" prepend-icon="mdi-phone" variant="solo" label="Telefone" v-mask="'(00) 00000-0000'"></v-text-field>
                             </v-col>
                         </v-row>
                         <v-row>
@@ -58,7 +58,7 @@
                     <v-divider></v-divider>
                     <v-card-actions class="bg-secondary">
                         <v-spacer>
-                            <v-btn variant="tonal" prepend-icon="mdi-content-save" color="primary">Salvar</v-btn>
+                            <v-btn variant="tonal" prepend-icon="mdi-content-save" @click="postInfo()" color="primary">Salvar</v-btn>
                         </v-spacer>
                     </v-card-actions>
                 </v-form>
@@ -68,24 +68,48 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     data() {
         return {
             contacts: {
                 email: null,
                 address: null,
-                telephone_number: null,
+                phoneNumber: null,
                 mobile_phone_number: null,
                 link_face: null,
                 link_insta: null,
-            }
+
+            },
+            phoneNumberMask : null,
         }
+    },
+    mounted(){
+        this.getInfo();
     },
     methods: {
     validateEmail(value) {
       const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return pattern.test(value) || 'E-mail inválido.';
-    }
+    },
+    getInfo(){
+        axios.get('api/contactInformation').then(Response => {
+            this.contacts = Response.data;
+            this.phoneNumberMask = this.contacts.phoneNumber;
+        }).catch(error => {
+            console.log(error);
+        })
+    },
+    postInfo(){
+        this.contacts.phoneNumberMask  = this.phoneNumberMask .replace(/\D/g, "");
+        console.log(this.contacts.phoneNumber)
+        axios.put('api/contactInformation', this.contacts).then(Response => {
+            console.log(Response.data)
+        }).catch(error => {
+            console.log(error);
+        })
+    },
   }
 };
 </script>

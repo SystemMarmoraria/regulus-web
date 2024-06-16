@@ -11,13 +11,16 @@
     "@devindex/vue-mask": "^2.0.3",
     "@mdi/font": "^7.4.47",
     "animejs": "^3.2.2",
+    "axios": "^1.7.2",
     "core-js": "^3.8.3",
+    "dotenv": "^16.4.5",
     "magic.css": "^1.4.8",
     "vue": "^3.2.13",
     "vue-router": "^4.3.0",
     "vuetify": "^3.5.10",
     "vuex": "^4.1.0",
-    "webfontloader": "^1.6.28"
+    "webfontloader": "^1.6.28",
+    "webpack": "5.54"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
