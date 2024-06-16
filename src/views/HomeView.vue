@@ -20,7 +20,7 @@
         </v-app-bar>
         <v-parallax class="gradient" src="/images/home.png" style="height: 40em;margin-bottom: 1.5em;">
             <div class="d-flex flex-column fill-height justify-center align-center text-indigo-accent-1" ref="banner">
-                <h1 class="text-h2 font-weight-thin mb-4">
+                <h1 class="text-h2 font-weight-bold mb-4">
                     Qualidade e excelência em cada detalhe.
                 </h1>
             </div>
@@ -39,23 +39,73 @@
                             class="text-secondary font-weight-bold">Conte conosco para tornar seu projeto em algo
                             extraordinário.</strong>
                         <v-container fluid>
-                            <v-row>
-                                <v-col>
-                                    <v-card variant="plain" class="rounded-lg" ref="icon1">
-                                        <v-img style="margin: 1em" class="bg-primary"
+                            <v-row align-content="center" justify="space-evenly"
+                                class="d-flex justify-center align-center">
+                                <v-col v-if="views.mission">
+                                    <v-card
+                                        @click="views.worth = !views.general, views.vision = !views.general, views.general = !views.general"
+                                        variant="plain"
+                                        class="cursor-pointer rounded-circle d-flex justify-center align-start"
+                                        ref="icon1" style="width: 23vw;">
+                                        <v-img style="margin: 1em;" class="bg-primary"
                                             src="images/icon-client-2.png"></v-img>
                                     </v-card>
                                 </v-col>
-                                <v-col>
-                                    <v-card variant="plain" class="rounded-lg" ref="icon2">
-                                        <v-img style="margin: 1em" class="bg-primary"
+                                <v-col v-if="views.vision">
+                                    <v-card
+                                        @click="views.worth = !views.general, views.mission = !views.general, views.general = !views.general"
+                                        variant="plain"
+                                        class="cursor-pointer rounded-circle d-flex justify-center align-start"
+                                        ref="icon2" style="width: 23vw;">
+                                        <v-img style="margin: 1em;" class="bg-primary"
                                             src="images/icon-marmore-2.png"></v-img>
                                     </v-card>
                                 </v-col>
-                                <v-col>
-                                    <v-card variant="plain" class="rounded-lg" ref="icon3">
-                                        <v-img style="margin: 1em" class="bg-primary"
+                                <v-col v-if="views.worth">
+                                    <v-card
+                                        @click="views.mission = !views.general, views.vision = !views.general, views.general = !views.general"
+                                        variant="plain"
+                                        class="cursor-pointer rounded-circle d-flex justify-center align-start"
+                                        ref="icon3" style="width: 23vw;">
+                                        <v-img style="margin: 1em;" class="bg-primary"
                                             src="images/icon-quality-2.png"></v-img>
+                                    </v-card>
+                                </v-col>
+                                <v-col v-if="(views.mission || views.vision || views.worth) && !views.general">
+                                    <v-card variant="outlined" class="rounded-lg" style="width: 60vw;">
+                                        <v-card-title v-if="views.mission" class="text-h4 py-4">Missão</v-card-title>
+                                        <v-card-text class="font-italic" v-if="views.mission">“Atendimento com perfeição
+                                            do início ao após entrega”</v-card-text>
+                                        <v-card-title v-if="views.vision" class="text-h4 py-4">Visão</v-card-title>
+                                        <v-card-text class="font-italic" v-if="views.vision">“Transformar com amor a
+                                            vivência da obra no constante do nosso
+                                            serviço com excelência”</v-card-text>
+                                        <v-card-title v-if="views.worth" class="text-h4 py-4">Valores</v-card-title>
+                                        <v-card-text v-if="views.worth" class="font-italic pb-4">
+                                            <v-list bg-color="transparent">
+                                                <v-list-item>
+                                                    <v-list-item-content>
+                                                        <v-list-item-title>Excelência em Atendimento</v-list-item-title>
+                                                    </v-list-item-content>
+                                                </v-list-item>
+                                                <v-list-item>
+                                                    <v-list-item-content>
+                                                        <v-list-item-title>Acabamento Impecável</v-list-item-title>
+                                                    </v-list-item-content>
+                                                </v-list-item>
+                                                <v-list-item>
+                                                    <v-list-item-content>
+                                                        <v-list-item-title>Comprometimento com seu
+                                                            Projeto</v-list-item-title>
+                                                    </v-list-item-content>
+                                                </v-list-item>
+                                                <v-list-item>
+                                                    <v-list-item-content>
+                                                        <v-list-item-title>Amor em cada Detalhe</v-list-item-title>
+                                                    </v-list-item-content>
+                                                </v-list-item>
+                                            </v-list>
+                                        </v-card-text>
                                     </v-card>
                                 </v-col>
                             </v-row>
@@ -63,14 +113,17 @@
                     </v-card>
                     <v-container>
                         <v-btn size="large" color="green" class="rounded-lg" append-icon="mdi-whatsapp"
-                            ref="button">Venha fazer negócios conosco</v-btn>
+                            ref="button">Venha fazer negócios
+                            conosco</v-btn>
                     </v-container>
                 </v-col>
+                <!--
                 <v-col>
                     <v-card variant="plain">
                         <v-img class="rounded-lg" src="images/pia.jpeg" ref="image"></v-img>
                     </v-card>
                 </v-col>
+                -->
             </v-row>
 
             <h2>Nossos principais produtos</h2>
@@ -87,18 +140,20 @@
             </v-row>
 
             <h2>Depoimento dos clientes</h2>
+            <h5 class="text-secondary">Clique para visualizar as reviews</h5>
             <v-card variant="tonal" class="mt-4" ref="testimonials">
                 <v-row class="mx-4">
-                    <v-col cols="2" v-for="(review, index) in reviews" :key="index" class="cursor-pointer" v-model="review.id">
+                    <v-col cols="2" v-for="(review, index) in reviews" :key="index" class="cursor-pointer"
+                        v-model="review.id">
                         <v-dialog v-model="dialog">
                             <v-card class="my-4">
-                                <v-card-title>
-                                    <v-avatar class="mr-3">
+                                <v-card-title class="bg-secondary">
+                                    <v-avatar class="mr-3 text-primary">
                                         <v-icon>mdi-account-circle</v-icon>
                                     </v-avatar>
-                                    <span>{{ reviewDialog.username }}</span>
-                                    <v-icon @click="dialog = false" style="float: right;" class="cursor-pointer closeButton"
-                                        :color="isHovering ? 'red' : null">
+                                    <span class="text-primary">{{ reviewDialog.username }}</span>
+                                    <v-icon @click="dialog = false" style="float: right;"
+                                        class="cursor-pointer closeButton" :color="isHovering ? 'red' : null">
                                         mdi-close-circle-outline
                                     </v-icon>
                                 </v-card-title>
@@ -110,6 +165,7 @@
                                     <v-rating v-model="reviewDialog.rating" background-color="transparent" color="amber"
                                         readonly></v-rating>
                                 </v-card-text>
+                                <v-divider class="mb-4"></v-divider>
                                 <v-card-actions class="d-flex justify-center">
                                     <v-icon color="primary">mdi-thumb-up-outline</v-icon>
                                     <span class="mx-2">{{ " " + review.likes }}</span>
@@ -119,11 +175,11 @@
                             </v-card>
                         </v-dialog>
                         <v-card class="my-4" @click="dialog = true, reviewDialog = filterAvaliations(review.id)">
-                            <v-card-title>
-                                <v-avatar class="mr-3">
+                            <v-card-title class="bg-secondary">
+                                <v-avatar class="mr-3 text-primary">
                                     <v-icon>mdi-account-circle</v-icon>
                                 </v-avatar>
-                                <span>{{ review.username }}</span>
+                                <span class="text-primary">{{ review.username }}</span>
                             </v-card-title>
                             <v-divider class="mb-4"></v-divider>
                             <v-card-subtitle class="text-body-1">
@@ -133,6 +189,7 @@
                                 <v-rating v-model="review.rating" background-color="transparent" color="amber"
                                     readonly></v-rating>
                             </v-card-text>
+                            <v-divider class="mb-4"></v-divider>
                             <v-card-actions class="d-flex justify-center">
                                 <v-icon color="primary">mdi-thumb-up-outline</v-icon>
                                 <span class="mx-2">{{ " " + review.likes }}</span>
@@ -182,6 +239,12 @@ export default {
         return {
             dialog: false,
             reviewDialog: {},
+            views: {
+                general: true,
+                mission: true,
+                vision: true,
+                worth: true
+            },
             reviews: [
                 {
                     id: 0,

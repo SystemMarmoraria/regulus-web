@@ -3,6 +3,7 @@
         <v-app-bar color="secondary" :scroll-threshold="scroll" :elevation="10">
             <h2 style="margin-left: 5px;">AdminSirius</h2>
             <v-spacer></v-spacer>
+            <v-btn append-icon="mdi-logout" variant="plain">Sair</v-btn>
         </v-app-bar>
         <v-container>
             <v-card class="mt-6">
@@ -77,7 +78,6 @@ export default {
                 mobile_phone_number: null,
                 link_face: null,
                 link_insta: null,
-
             }
         }
     },
