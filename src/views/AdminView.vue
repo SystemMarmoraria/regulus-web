@@ -15,27 +15,27 @@
                     <v-container>
                         <v-row>
                             <v-col>
-                                <v-text-field v-model="contacts.mobile_phone_number" :rules="[
+                                <v-text-field :disabled="disabled" v-model="contacts.mobile_phone_number" :rules="[
                                     () => !!contacts.mobile_phone_number || 'O Numero do celular precisa ser preenchido',
                                 ]" prepend-icon="mdi-whatsapp" variant="solo" label="Celular"
                                     v-mask-phone.br></v-text-field>
                             </v-col>
                             <v-col>
-                                <v-text-field v-model="phoneNumberMask "  :rules="[
+                                <v-text-field :disabled="disabled" v-model="phoneNumberMask "  :rules="[
                                     () => !!phoneNumberMask  || 'O número do telefone precisa ser preenchido',
                                 ]" prepend-icon="mdi-phone" variant="solo" label="Telefone" v-mask="'(00) 00000-0000'"></v-text-field>
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col>
-                                <v-text-field v-model="contacts.email" :rules="[
+                                <v-text-field :disabled="disabled" v-model="contacts.email" :rules="[
                                     () => !!contacts.email || 'O e-mail precisa ser preenchido',
                                     value => validateEmail(value),
                                     ]" prepend-icon="mdi-email-outline" variant="solo"
                                     label="Email"></v-text-field>
                             </v-col>
                             <v-col>
-                                <v-text-field v-model="contacts.address" :rules="[
+                                <v-text-field :disabled="disabled" v-model="contacts.address" :rules="[
                                     () => !!contacts.address || 'O endereço precisa ser preenchido',
                                 ]" prepend-icon="mdi-map-marker-outline" variant="solo"
                                     label="Endereço"></v-text-field>
@@ -43,13 +43,13 @@
                         </v-row>
                         <v-row>
                             <v-col>
-                                <v-text-field v-model="contacts.link_face" :rules="[
-                                    () => !!contacts.link_face || 'O link do facebook precisa ser preenchido',
+                                <v-text-field :disabled="disabled" v-model="contacts.link_face" :rules="[
+                                    () => !!contacts.linkFace || 'O link do facebook precisa ser preenchido',
                                 ]" prepend-icon="mdi-facebook" variant="solo" label="Link do facebook"></v-text-field>
                             </v-col>
                             <v-col>
-                                <v-text-field v-model="contacts.link_insta" :rules="[
-                                    () => !!contacts.link_insta || 'O link do instagram precisa ser preenchido',
+                                <v-text-field :disabled="disabled" v-model="contacts.link_insta" :rules="[
+                                    () => !!contacts.linkInsta || 'O link do instagram precisa ser preenchido',
                                 ]" prepend-icon="mdi-instagram" variant="solo"
                                     label="Link do instagram"></v-text-field>
                             </v-col>
@@ -58,7 +58,7 @@
                     <v-divider></v-divider>
                     <v-card-actions class="bg-secondary">
                         <v-spacer>
-                            <v-btn variant="tonal" prepend-icon="mdi-content-save" @click="putInfo()" color="primary">Salvar</v-btn>
+                            <v-btn variant="tonal" :prepend-icon=" disabled ? 'mdi-circle-edit-outline':'mdi-content-save'" @click="putInfo(), disabled = !disabled" :color="disabled? 'primary' : 'green'">{{disabled ? 'Editar':'Salvar'}}</v-btn>
                         </v-spacer>
                     </v-card-actions>
                 </v-form>
@@ -82,6 +82,7 @@ export default {
                 linkInsta: null,
             },
             phoneNumberMask : null,
+            disabled: true,
         }
     },
     mounted(){

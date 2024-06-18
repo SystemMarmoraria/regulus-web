@@ -18,8 +18,6 @@ export default {
     return {
       drawer: false,
       mini: true,
-      tab: null,
-      scroll: 0,
     };
   },
   mounted() {

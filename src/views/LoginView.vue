@@ -5,14 +5,14 @@
                 <v-container fluid>
                     <v-row align="center" justify="center" style="min-height: 100vh;">
                         <v-col cols="12" sm="8" md="6">
-                            <v-card color="secondary">
+                            <v-card color="secondary" elevation="24">
                                 <v-card-title class="text-center text-primary font-weight-bold">Login</v-card-title>
                                 <v-divider class="text-primary"></v-divider>
                                 <v-form>
                                     <v-container>
                                         <v-row>
                                             <v-col cols="12">
-                                                <v-text-field label="E-mail" v-model="form.userName" type="email" variant="solo"></v-text-field>
+                                                <v-text-field label="Nome de usuário" v-model="form.userName" type="email" variant="solo"></v-text-field>
                                             </v-col>
                                         </v-row>
                                         <v-row>

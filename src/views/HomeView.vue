@@ -45,30 +45,51 @@
                                     <v-card
                                         @click="views.worth = !views.general, views.vision = !views.general, views.general = !views.general"
                                         variant="plain"
-                                        class="cursor-pointer rounded-circle d-flex justify-center align-start"
+                                        class="blackFilter cursor-pointer rounded-circle d-flex justify-center align-start image-wrapper"
                                         ref="icon1" style="width: 23vw;">
-                                        <v-img style="margin: 1em;" class="bg-primary"
-                                            src="images/icon-client-2.png"></v-img>
+                                        <v-hover v-slot="{ isHovering, props }" open-delay="200">
+                                            <v-img style="margin: 1em;" src="images/Mission.png" v-bind="props">
+                                                <div class="overlay" :class="{ 'visible': isHovering }">
+                                                    <h3 class="overlay-text text-white">{{ views.general ? 'Ver missão'
+                                                        :
+                                                        'Voltar'}}</h3>
+                                                </div>
+                                            </v-img>
+                                        </v-hover>
                                     </v-card>
                                 </v-col>
                                 <v-col v-if="views.vision">
                                     <v-card
                                         @click="views.worth = !views.general, views.mission = !views.general, views.general = !views.general"
                                         variant="plain"
-                                        class="cursor-pointer rounded-circle d-flex justify-center align-start"
+                                        class="blackFilter cursor-pointer rounded-circle d-flex justify-center align-start image-wrapper"
                                         ref="icon2" style="width: 23vw;">
-                                        <v-img style="margin: 1em;" class="bg-primary"
-                                            src="images/icon-marmore-2.png"></v-img>
+                                        <v-hover v-slot="{ isHovering, props }" open-delay="200">
+                                            <v-img style="margin: 1em;" src="images/binocular.png"
+                                                v-bind="props">
+                                                <div class="overlay" :class="{ 'visible': isHovering }">
+                                                    <h3 class="overlay-text text-white">{{ views.general ? 'Ver Visão' :
+                                                        'Voltar' }}</h3>
+                                                </div>
+                                            </v-img>
+                                        </v-hover>
                                     </v-card>
                                 </v-col>
                                 <v-col v-if="views.worth">
                                     <v-card
                                         @click="views.mission = !views.general, views.vision = !views.general, views.general = !views.general"
                                         variant="plain"
-                                        class="cursor-pointer rounded-circle d-flex justify-center align-start"
+                                        class="blackFilter cursor-pointer rounded-circle d-flex justify-center align-start image-wrapper"
                                         ref="icon3" style="width: 23vw;">
-                                        <v-img style="margin: 1em;" class="bg-primary"
-                                            src="images/icon-quality-2.png"></v-img>
+                                        <v-hover v-slot="{ isHovering, props }" open-delay="200">
+                                            <v-img style="margin: 1em;"
+                                                src="images/valor.png" v-bind="props">
+                                                <div class="overlay" :class="{ 'visible': isHovering }">
+                                                    <h3 class="overlay-text text-white">{{ views.general ? 'Ver Valores' :
+                                                        'Voltar' }}</h3>
+                                                </div>
+                                            </v-img>
+                                        </v-hover>
                                     </v-card>
                                 </v-col>
                                 <v-col v-if="(views.mission || views.vision || views.worth) && !views.general">
@@ -245,6 +266,8 @@ export default {
                 vision: true,
                 worth: true
             },
+            tab: null,
+            scroll: 0,
             reviews: [
                 {
                     id: 0,
@@ -361,5 +384,44 @@ export default {
 <style>
 .closeButton:hover {
     color: red
+}
+
+.overlay.visible {
+    opacity: 1;
+}
+
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.blackFilter:hover {
+    transition: filter 0.3s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 100%;
+}
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.overlay-text {
+    position: relative;
+    /* Adicione esta linha */
+    z-index: 2;
+    /* Adicione esta linha */
+    font-size: 1.351rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.image-wrapper:hover .overlay {
+    opacity: 1;
 }
 </style>
