@@ -237,18 +237,25 @@
                                             class="cursor-pointer" size="x-large" icon="mdi-instagram" end></v-icon></a>
                                 </v-card-actions>
                                 <v-card-title class="text-left text-h5 mt-5 mb-1">Contato telefônico</v-card-title>
-                                <v-card-text class="text-left"><v-icon size="x-small" variant="text" icon="mdi-phone"></v-icon>{{' Telefone fixo: (19) 2519-3131'}}</v-card-text>
+                                <v-card-text class="text-left"><v-icon size="x-small" variant="text"
+                                        icon="mdi-phone"></v-icon>{{ ' Telefone fixo: (19) 2519-3131' }}</v-card-text>
                                 <v-card-actions class="d-flex justify-start">
-                                    <v-btn append-icon="mdi-whatsapp" class="bg-green">Enviar menssagem pelo Whatsapp</v-btn>
+                                    <v-btn append-icon="mdi-whatsapp" @click="sendWhatsApp" class="bg-green">Enviar menssagem pelo
+                                        Whatsapp</v-btn>
                                 </v-card-actions>
                             </v-col>
                             <v-col cols="7">
-                                <h3 class="mb-4">{{'Formulário de contato  '}}<v-icon size="small" icon="mdi-email-outline"></v-icon></h3>
+                                <h3 class="mb-4">{{ 'Formulário de contato ' }}<v-icon size="small"
+                                        icon="mdi-email-outline"></v-icon></h3>
                                 <form @submit.prevent="sendEmail">
-                                    <v-text-field :disabled="true" variant="outlined" type="email" v-model="toEmail" label="Email do Destinatário" required></v-text-field>
-                                    <v-text-field variant="outlined" type="text" v-model="subject" label="Assunto" required></v-text-field>
-                                    <v-textarea variant="outlined" v-model="message" label="Sua mensagem" required></v-textarea>
-                                    <v-btn width="100%" variant="outlined" type="submit" append-icon="mdi-email-arrow-right">Enviar</v-btn>
+                                    <v-text-field :disabled="true" variant="outlined" type="email" v-model="toEmail"
+                                        label="Email do Destinatário" required></v-text-field>
+                                    <v-text-field variant="outlined" type="text" v-model="subject" label="Assunto"
+                                        required></v-text-field>
+                                    <v-textarea variant="outlined" v-model="message" label="Sua mensagem"
+                                        required></v-textarea>
+                                    <v-btn width="100%" variant="outlined" type="submit"
+                                        append-icon="mdi-email-arrow-right">Enviar</v-btn>
                                 </form>
                             </v-col>
                         </v-row>
@@ -382,6 +389,10 @@ export default {
         sendEmail() {
             const mailtoLink = `mailto:${this.toEmail}?subject=${encodeURIComponent(this.subject)}&body=${encodeURIComponent(this.message)}`;
             window.location.href = mailtoLink;
+        },
+        sendWhatsApp() {
+            const whatsappLink = `https://wa.me/19976004302?text=${encodeURIComponent("Olá, eu gostaria de fazer um orçamento!")}`;
+            window.open(whatsappLink, '_blank');
         },
         animateElementsOnLoad() {
             anime.timeline({
