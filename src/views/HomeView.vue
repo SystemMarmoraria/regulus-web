@@ -26,7 +26,7 @@
             </div>
         </v-parallax>
 
-        <h2>Uma empresa voltada ao consumidor</h2>
+        <h2 class="text-h4 mb-12 mt-12">Uma empresa voltada ao consumidor</h2>
 
         <v-container fluid style="margin-top: 15px;">
             <v-row style="margin-bottom: 1.5em;">
@@ -52,7 +52,7 @@
                                                 <div class="overlay" :class="{ 'visible': isHovering }">
                                                     <h3 class="overlay-text text-white">{{ views.general ? 'Ver missão'
                                                         :
-                                                        'Voltar'}}</h3>
+                                                        'Voltar' }}</h3>
                                                 </div>
                                             </v-img>
                                         </v-hover>
@@ -65,8 +65,7 @@
                                         class="blackFilter cursor-pointer rounded-circle d-flex justify-center align-start image-wrapper"
                                         ref="icon2" style="width: 23vw;">
                                         <v-hover v-slot="{ isHovering, props }" open-delay="200">
-                                            <v-img style="margin: 1em;" src="images/binocular.png"
-                                                v-bind="props">
+                                            <v-img style="margin: 1em;" src="images/binocular.png" v-bind="props">
                                                 <div class="overlay" :class="{ 'visible': isHovering }">
                                                     <h3 class="overlay-text text-white">{{ views.general ? 'Ver Visão' :
                                                         'Voltar' }}</h3>
@@ -82,10 +81,10 @@
                                         class="blackFilter cursor-pointer rounded-circle d-flex justify-center align-start image-wrapper"
                                         ref="icon3" style="width: 23vw;">
                                         <v-hover v-slot="{ isHovering, props }" open-delay="200">
-                                            <v-img style="margin: 1em;"
-                                                src="images/valor.png" v-bind="props">
+                                            <v-img style="margin: 1em;" src="images/valor.png" v-bind="props">
                                                 <div class="overlay" :class="{ 'visible': isHovering }">
-                                                    <h3 class="overlay-text text-white">{{ views.general ? 'Ver Valores' :
+                                                    <h3 class="overlay-text text-white">{{ views.general ? 'Ver Valores'
+                                                        :
                                                         'Voltar' }}</h3>
                                                 </div>
                                             </v-img>
@@ -132,11 +131,6 @@
                             </v-row>
                         </v-container>
                     </v-card>
-                    <v-container>
-                        <v-btn size="large" color="green" class="rounded-lg" append-icon="mdi-whatsapp"
-                            ref="button">Venha fazer negócios
-                            conosco</v-btn>
-                    </v-container>
                 </v-col>
                 <!--
                 <v-col>
@@ -147,7 +141,7 @@
                 -->
             </v-row>
 
-            <h2>Nossos principais produtos</h2>
+            <h2 class="text-h4 mb-12 mt-12">Nossos principais produtos</h2>
             <v-row style="margin-top: 15px; margin-bottom: 1.5em" ref="products">
                 <v-carousel class="rounded-lg" style="margin: 1em" show-arrows="hover" cycle>
                     <v-carousel-item color="secondary" v-for="i in 4" :key="i">
@@ -160,9 +154,9 @@
                 </v-carousel>
             </v-row>
 
-            <h2>Depoimento dos clientes</h2>
-            <h5 class="text-secondary">Clique para visualizar as reviews</h5>
-            <v-card variant="tonal" class="mt-4" ref="testimonials">
+            <h2 class="text-h4 mt-12">Depoimento dos clientes</h2>
+            <h4 class="text-secondary mt-2">Clique para visualizar as reviews</h4>
+            <v-card variant="tonal" class="mt-12" ref="testimonials">
                 <v-row class="mx-4">
                     <v-col cols="2" v-for="(review, index) in reviews" :key="index" class="cursor-pointer"
                         v-model="review.id">
@@ -222,6 +216,46 @@
                 </v-row>
             </v-card>
         </v-container>
+        <v-parallax class="gradient mt-12" src="/images/Sirius.png" style="height: 40em; margin-top: 20px;">
+            <div class="d-flex flex-column justify-center align-center" ref="banner">
+                <h2 class="text-h4 text-secondary mb-12 mt-12">Entre em contato conosco</h2>
+                <v-card variant="tonal" width="95%">
+                    <v-container>
+                        <v-row>
+                            <v-col cols="5">
+                                <v-card-title class="text-left text-h5">Localização <v-icon size="small"
+                                        icon="mdi-map-marker-outline"></v-icon></v-card-title>
+                                <v-card-text class="mt-4 text-left">Avenida Benedito de Campos, 811 -
+                                    Jardim do Trevo, <br> Campinas - SP
+                                    CEP:13.030-100</v-card-text>
+                                <v-card-title class="mt-5 mb-1 text-left text-h5">Siga-Nos em nossas redes
+                                    sociais</v-card-title>
+                                <v-card-actions class="d-flex justify-start">
+                                    <a href="https://www.facebook.com/siriusmr/?locale=pt_BR" target="_blank"><v-icon
+                                            class="cursor-pointer" size="x-large" icon="mdi-facebook" end></v-icon></a>
+                                    <a href="https://www.instagram.com/siriusmrev/?hl=pt" target="_blank"><v-icon
+                                            class="cursor-pointer" size="x-large" icon="mdi-instagram" end></v-icon></a>
+                                </v-card-actions>
+                                <v-card-title class="text-left text-h5 mt-5 mb-1">Contato telefônico</v-card-title>
+                                <v-card-text class="text-left"><v-icon size="x-small" variant="text" icon="mdi-phone"></v-icon>{{' Telefone fixo: (19) 2519-3131'}}</v-card-text>
+                                <v-card-actions class="d-flex justify-start">
+                                    <v-btn append-icon="mdi-whatsapp" class="bg-green">Enviar menssagem pelo Whatsapp</v-btn>
+                                </v-card-actions>
+                            </v-col>
+                            <v-col cols="7">
+                                <h3 class="mb-4">{{'Formulário de contato  '}}<v-icon size="small" icon="mdi-email-outline"></v-icon></h3>
+                                <form @submit.prevent="sendEmail">
+                                    <v-text-field :disabled="true" variant="outlined" type="email" v-model="toEmail" label="Email do Destinatário" required></v-text-field>
+                                    <v-text-field variant="outlined" type="text" v-model="subject" label="Assunto" required></v-text-field>
+                                    <v-textarea variant="outlined" v-model="message" label="Sua mensagem" required></v-textarea>
+                                    <v-btn width="100%" variant="outlined" type="submit" append-icon="mdi-email-arrow-right">Enviar</v-btn>
+                                </form>
+                            </v-col>
+                        </v-row>
+                    </v-container>
+                </v-card>
+            </div>
+        </v-parallax>
         <v-footer app color="secondary">
             <v-row>
                 <v-col>
@@ -238,7 +272,7 @@
                 </v-col>
                 <v-col>
                     <h4>Email</h4>
-                    <p><v-icon size="small" icon="mdi-email-outline"></v-icon>{{ " siriusmarmoraria@yahoo.com" }}</p>
+                    <p><v-icon size="small" icon="mdi-email-outline"></v-icon>{{ "siriusmarmoraria@yahoo.com" }}</p>
                 </v-col>
                 <v-col>
                     <h4>Redes Sociais</h4>
@@ -258,6 +292,17 @@ import anime from 'animejs';
 export default {
     data() {
         return {
+            toEmail: 'siriusmarmoraria@yahoo.com',
+            subject: '',
+            message: '',
+            contacts: {
+                email: null,
+                address: null,
+                phoneNumber: null,
+                telPhonenumber: null,
+                linkFace: null,
+                linkInsta: null,
+            },
             dialog: false,
             reviewDialog: {},
             views: {
@@ -334,6 +379,10 @@ export default {
             let review = this.reviews.find(review => (review.id === id))
             return review
         },
+        sendEmail() {
+            const mailtoLink = `mailto:${this.toEmail}?subject=${encodeURIComponent(this.subject)}&body=${encodeURIComponent(this.message)}`;
+            window.location.href = mailtoLink;
+        },
         animateElementsOnLoad() {
             anime.timeline({
                 easing: 'easeOutExpo',
@@ -382,6 +431,11 @@ export default {
 
 
 <style>
+a {
+    color: white;
+    text-decoration: none;
+}
+
 .closeButton:hover {
     color: red
 }
