@@ -4,7 +4,8 @@
     <v-main class="bg-primary" ref="main">
       <router-view></router-view>
     </v-main>
-    <v-footer app color="secondary" ref="footer">
+    <v-footer app color="secondary" class="d-flex justify-center" ref="footer">
+      <p class="text-primary">&copy; {{ year }} Sirius Marmoraria e Revestimentos. Todos os direitos reservados.</p>
     </v-footer>
   </v-app>
 </template>
@@ -18,7 +19,12 @@ export default {
     return {
       drawer: false,
       mini: true,
+      year: null,
     };
+  },
+  created() {
+    this.year = new Date();
+    this.year = this.year.getFullYear();
   },
   mounted() {
     // Animação de entrada para o drawer
@@ -69,13 +75,13 @@ export default {
         direction: 'normal',
         loop: false,
         autoplay: true,
-        begin: function(anim) {
-          anim.animatables.forEach(function(animatable) {
+        begin: function (anim) {
+          anim.animatables.forEach(function (animatable) {
             animatable.target.style.visibility = 'visible';
           });
         },
-        complete: function(anim) {
-          anim.animatables.forEach(function(animatable) {
+        complete: function (anim) {
+          anim.animatables.forEach(function (animatable) {
             animatable.target.style.visibility = 'visible';
           });
         }
