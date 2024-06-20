@@ -271,9 +271,6 @@
                 </v-card>
             </div>
         </v-parallax>
-        <v-footer app color="secondary" class="d-flex justify-center">
-            <p class="text-primary">&copy; {{ year }} Sirius Marmoraria e Revestimentos. Todos os direitos reservados.</p>
-        </v-footer>
     </div>
 </template>
 
@@ -287,7 +284,6 @@ export default {
             toEmail: 'siriusmarmoraria@yahoo.com',
             subject: '',
             message: '',
-            year: null,
             contacts: {
                 email: null,
                 address: null,
@@ -364,11 +360,6 @@ export default {
             ]
         };
     },
-    created() {
-        this.year = new Date();
-        this.year = this.year.getFullYear();
-    },
-
     mounted() {
         this.animateElementsOnLoad();
     },
