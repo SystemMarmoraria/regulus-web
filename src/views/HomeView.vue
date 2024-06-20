@@ -1,20 +1,29 @@
 <template>
     <div>
+        <a name="home"></a>
         <v-app-bar color="secondary" :scroll-threshold="scroll" :elevation="10">
             <img src="images/logo-sirius.png" alt="sirius logo" width="10%">
             <v-spacer></v-spacer>
             <v-tabs class="text-primary" v-model="tab" density="comfortable">
                 <v-tab :hide-slider="true" value="home">
-                    <h4>Home</h4>
+                    <a href="#home">
+                        <h4 class="text-primary">Home</h4>
+                    </a>
                 </v-tab>
                 <v-tab :hide-slider="true" value="about">
-                    <h4>Sobre nós</h4>
+                    <a href="#about">
+                        <h4 class="text-primary">Sobre nós</h4>
+                    </a>
                 </v-tab>
                 <v-tab :hide-slider="true" value="portfolio">
-                    <h4>Produtos</h4>
+                    <a href="#portfolio">
+                        <h4 class="text-primary">Produtos</h4>
+                    </a>
                 </v-tab>
                 <v-tab :hide-slider="true" value="contact">
-                    <h4>Contato</h4>
+                    <a href="#contact">
+                        <h4 class="text-primary">Contato</h4>
+                    </a>
                 </v-tab>
             </v-tabs>
         </v-app-bar>
@@ -24,11 +33,12 @@
                     Qualidade e excelência em cada detalhe.
                 </h1>
             </div>
+            <a name="about"></a>
         </v-parallax>
-
         <h2 class="text-h4 mb-12 mt-12">Uma empresa voltada ao consumidor</h2>
 
         <v-container fluid style="margin-top: 15px;">
+
             <v-row style="margin-bottom: 1.5em;">
                 <v-col>
                     <v-card variant="tonal" style="padding: 15px;" class="text-h6 font-weight-regular" ref="mission">
@@ -130,6 +140,7 @@
                                 </v-col>
                             </v-row>
                         </v-container>
+                        <a name="portfolio"></a>
                     </v-card>
                 </v-col>
                 <!--
@@ -144,12 +155,7 @@
             <h2 class="text-h4 mb-12 mt-12">Nossos principais produtos</h2>
             <v-row style="margin-top: 15px; margin-bottom: 1.5em" ref="products">
                 <v-carousel class="rounded-lg" style="margin: 1em" show-arrows="hover" cycle>
-                    <v-carousel-item color="secondary" v-for="i in 4" :key="i">
-                        <div class="d-flex fill-height justify-center align-center">
-                            <div class="text-h2">
-                                Produto {{ i }}
-                            </div>
-                        </div>
+                    <v-carousel-item cover :src="`/images/IMG_${i}.png`" color="secondary" v-for="i in 7" :key="i">
                     </v-carousel-item>
                 </v-carousel>
             </v-row>
@@ -180,8 +186,8 @@
                                     <v-rating v-model="reviewDialog.rating" background-color="transparent" color="amber"
                                         readonly></v-rating>
                                 </v-card-text>
-                                <v-divider class="mb-4"></v-divider>
-                                <v-card-actions class="d-flex justify-center">
+                                <v-divider></v-divider>
+                                <v-card-actions class="d-flex justify-center bg-secondary">
                                     <v-icon color="primary">mdi-thumb-up-outline</v-icon>
                                     <span class="mx-2">{{ " " + review.likes }}</span>
                                     <v-icon color="error">mdi-thumb-down-outline</v-icon>
@@ -202,10 +208,10 @@
                             </v-card-subtitle>
                             <v-card-text>
                                 <v-rating v-model="review.rating" background-color="transparent" color="amber"
-                                    readonly></v-rating>
+                                    readonly density="compact"></v-rating>
                             </v-card-text>
-                            <v-divider class="mb-4"></v-divider>
-                            <v-card-actions class="d-flex justify-center">
+                            <v-divider class=""></v-divider>
+                            <v-card-actions class="d-flex justify-center bg-secondary">
                                 <v-icon color="primary">mdi-thumb-up-outline</v-icon>
                                 <span class="mx-2">{{ " " + review.likes }}</span>
                                 <v-icon color="error">mdi-thumb-down-outline</v-icon>
@@ -216,6 +222,7 @@
                 </v-row>
             </v-card>
         </v-container>
+        <a name="contact"></a>
         <v-parallax class="gradient mt-12" src="/images/Sirius.png" style="height: 40em; margin-top: 20px;">
             <div class="d-flex flex-column justify-center align-center" ref="banner">
                 <h2 class="text-h4 text-secondary mb-12 mt-12">Entre em contato conosco</h2>
@@ -240,7 +247,8 @@
                                 <v-card-text class="text-left"><v-icon size="x-small" variant="text"
                                         icon="mdi-phone"></v-icon>{{ ' Telefone fixo: (19) 2519-3131' }}</v-card-text>
                                 <v-card-actions class="d-flex justify-start">
-                                    <v-btn append-icon="mdi-whatsapp" @click="sendWhatsApp" class="bg-green">Enviar menssagem pelo
+                                    <v-btn append-icon="mdi-whatsapp" @click="sendWhatsApp" class="bg-green">Enviar
+                                        menssagem pelo
                                         Whatsapp</v-btn>
                                 </v-card-actions>
                             </v-col>
@@ -254,7 +262,7 @@
                                         required></v-text-field>
                                     <v-textarea variant="outlined" v-model="message" label="Sua mensagem"
                                         required></v-textarea>
-                                    <v-btn width="100%" variant="outlined" type="submit"
+                                    <v-btn width="100%" variant="outlined" class="bg-white" type="submit"
                                         append-icon="mdi-email-arrow-right">Enviar</v-btn>
                                 </form>
                             </v-col>
@@ -263,38 +271,15 @@
                 </v-card>
             </div>
         </v-parallax>
-        <v-footer app color="secondary">
-            <v-row>
-                <v-col>
-                    <h4>Sirius Marmoraria</h4>
-                    <p><v-icon size="x-small" variant="text" icon="mdi-whatsapp"></v-icon>{{ " (19) 97600-4302" }}</p>
-                    <p><v-icon size="x-small" variant="text" icon="mdi-phone"></v-icon>{{ " (19) 2519-3131" }}</p>
-                </v-col>
-                <v-col>
-                    <h4>Endereço</h4>
-
-                    <p><v-icon size="small" icon="mdi-map-marker-outline"></v-icon>Avenida Benedito de Campos, 811 -
-                        Jardim do Trevo, Campinas - SP
-                        CEP:13.030-100</p>
-                </v-col>
-                <v-col>
-                    <h4>Email</h4>
-                    <p><v-icon size="small" icon="mdi-email-outline"></v-icon>{{ "siriusmarmoraria@yahoo.com" }}</p>
-                </v-col>
-                <v-col>
-                    <h4>Redes Sociais</h4>
-                    <v-icon color="blue-darken-4" class="cursor-pointer" size="x-large" icon="mdi-facebook"
-                        start></v-icon>
-                    <v-icon color="pink-accent-3" class="cursor-pointer" size="x-large" icon="mdi-instagram"
-                        end></v-icon>
-                </v-col>
-            </v-row>
+        <v-footer app color="secondary" class="d-flex justify-center">
+            <p class="text-primary">&copy; {{ year }} Sirius Marmoraria e Revestimentos. Todos os direitos reservados.</p>
         </v-footer>
     </div>
 </template>
 
 <script>
 import anime from 'animejs';
+import axios from 'axios';
 
 export default {
     data() {
@@ -302,6 +287,7 @@ export default {
             toEmail: 'siriusmarmoraria@yahoo.com',
             subject: '',
             message: '',
+            year: null,
             contacts: {
                 email: null,
                 address: null,
@@ -378,10 +364,22 @@ export default {
             ]
         };
     },
+    created() {
+        this.year = new Date();
+        this.year = this.year.getFullYear();
+    },
+
     mounted() {
         this.animateElementsOnLoad();
     },
     methods: {
+        getInfo() {
+            axios.get('api/contactInformation').then(Response => {
+                this.contacts = Response.data;
+            }).catch(error => {
+                console.log(error);
+            })
+        },
         filterAvaliations(id) {
             let review = this.reviews.find(review => (review.id === id))
             return review
