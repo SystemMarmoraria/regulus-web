@@ -19,7 +19,6 @@
                                             <v-col cols="12">
                                                 <v-text-field v-model="form.password" label="Senha" type="password"
                                                     variant="solo"></v-text-field>
-                                                    <p style="color: #f34336;" v-if="errorLogin">Login Inválido!</p>
                                             </v-col>
                                         </v-row>
                                         </v-container>
@@ -75,7 +74,7 @@ export default {
                 this.errorLogin = false;
             }).catch(error => {
                 this.errorMessage = error.response.status == 404 ? error.response.data : "Erro ao realizar login";
-                this.errorLogin = true;
+                this.$toast.error(this.errorMessage);
             })
         }
     }

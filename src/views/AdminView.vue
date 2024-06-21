@@ -63,17 +63,6 @@
                     </v-card-actions>
                 </v-form>
             </v-card>
-            <v-alert
-                        v-model="showMessage"
-                        :color="error ? 'error' : 'success'"
-                        dark
-                        fixed bottom
-                    >
-                        <span v-if="message">{{ message }}</span>
-                        <v-btn class="ml-4" icon @click="showMessage = false">
-                        <v-icon>mdi-close</v-icon>
-                        </v-btn>
-                    </v-alert>
         </v-container>
     </div>
 </template>
@@ -136,12 +125,12 @@ export default {
         axios.put('api/contactInformation', this.contacts).then( Response => {
             if(Response != null){
                 this.error = false;
-                this.message = "Informações atualizadas com sucesso"
+                this.$toast.success("Informações atualizadas com sucesso")
                 this.disabled = true;
             }
         }).catch(error => {
             this.error = true;
-            this.message = error
+            this.$toast.error(error);
         })
         this.showMessage = true;
     },
