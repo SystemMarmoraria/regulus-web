@@ -1,20 +1,20 @@
 <template>
     <div>
-        <a id="home"></a>
+        <a id="Incio"></a>
         <v-app-bar color="secondary" :scroll-threshold="scroll" :elevation="10">
-            <img src="images/logo-sirius.png" alt="sirius logo" width="10%">
+            <v-img src="images/logo-sirius.png" alt="sirius logo" max-width="150px" class="mr-4"></v-img>
             <v-spacer></v-spacer>
             <v-tabs class="text-primary" v-model="tab" density="comfortable">
-                <v-tab v-scroll-to="'#home'" :hide-slider="true" value="home">
+                <v-tab v-scroll-to="'#Incio'" :hide-slider="true" value="home">
                         <h4 class="text-primary">Home</h4>
                 </v-tab>
-                <v-tab v-scroll-to="'#about'" :hide-slider="true" value="about">
+                <v-tab v-scroll-to="'#Sobre-nos'" :hide-slider="true" value="about">
                         <h4 class="text-primary">Sobre nós</h4>
                 </v-tab>
-                <v-tab v-scroll-to="'#portfolio'" :hide-slider="true" value="portfolio">
+                <v-tab v-scroll-to="'#Produtos'" :hide-slider="true" value="portfolio">
                         <h4 class="text-primary">Produtos</h4>
                 </v-tab>
-                <v-tab v-scroll-to="'#contact'" :hide-slider="true" value="contact">
+                <v-tab v-scroll-to="'#Contato'" :hide-slider="true" value="contact">
                         <h4 class="text-primary">Contato</h4>
                 </v-tab>
             </v-tabs>
@@ -25,12 +25,11 @@
                     Qualidade e excelência em cada detalhe.
                 </h1>
             </div>
-            <a id="about"></a>
+            <a id="Sobre-nos"></a>
         </v-parallax>
         <h2 class="text-h4 mb-12 mt-12">Uma empresa voltada ao consumidor</h2>
 
         <v-container fluid style="margin-top: 15px;">
-
             <v-row style="margin-bottom: 1.5em;">
                 <v-col>
                     <v-card variant="tonal" style="padding: 15px;" class="text-h6 font-weight-regular" ref="mission">
@@ -41,8 +40,7 @@
                             class="text-secondary font-weight-bold">Conte conosco para tornar seu projeto em algo
                             extraordinário.</strong>
                         <v-container fluid>
-                            <v-row align-content="center" justify="space-evenly"
-                                class="d-flex justify-center align-center">
+                            <v-row align-content="center" justify="center">
                                 <v-col v-if="views.mission">
                                     <v-card
                                         @click="views.worth = !views.general, views.vision = !views.general, views.general = !views.general"
@@ -132,7 +130,7 @@
                                 </v-col>
                             </v-row>
                         </v-container>
-                        <a id="portfolio"></a>
+                        <a id="Produtos"></a>
                     </v-card>
                 </v-col>
                 <!--
@@ -156,7 +154,7 @@
             <h4 class="text-secondary mt-2">Clique para visualizar as reviews</h4>
             <v-card variant="tonal" class="mt-12" ref="testimonials">
                 <v-row class="mx-4">
-                    <v-col cols="2" v-for="(review, index) in reviews" :key="index" class="cursor-pointer"
+                    <v-col cols="12" sm="6" md="6" lg="4" xl="2" v-for="(review, index) in reviews" :key="index" class="cursor-pointer"
                         v-model="review.id">
                         <v-dialog v-model="dialog">
                             <v-card class="my-4">
@@ -181,7 +179,7 @@
                                 <v-divider></v-divider>
                                 <v-card-actions class="d-flex justify-center bg-secondary">
                                     <v-icon color="primary">mdi-thumb-up-outline</v-icon>
-                                    <span class="mx-2">{{ " " + review.likes }}</span>
+                                    <span class="mx-2">{{ " " + reviewDialog.likes }}</span>
                                     <v-icon color="error">mdi-thumb-down-outline</v-icon>
                                     <span>{{ " " + reviewDialog.dislikes }}</span>
                                 </v-card-actions>
@@ -214,7 +212,7 @@
                 </v-row>
             </v-card>
         </v-container>
-        <a id="contact"></a>
+        <a id="Contato"></a>
         <v-parallax class="gradient mt-12" src="/images/Sirius.png" style="height: 40em; margin-top: 20px;">
             <div class="d-flex flex-column justify-center align-center" ref="banner">
                 <h2 class="text-h4 text-secondary mb-12 mt-12">Entre em contato conosco</h2>
@@ -276,6 +274,12 @@ export default {
             toEmail: 'siriusmarmoraria@yahoo.com',
             subject: '',
             message: '',
+            colsAbout: {
+                sm: "1", 
+                md: "1", 
+                lg:"1",
+                xl:"1"
+            },
             contacts: {
                 email: null,
                 address: null,
