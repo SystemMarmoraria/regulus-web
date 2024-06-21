@@ -43,8 +43,20 @@
 
 <script>
 import axios from 'axios';
+import { useHead } from '@vueuse/head';
 
 export default {
+    setup() {
+        useHead({
+            title: 'Login - Sirius Marmoraria',
+            meta: [
+                {
+                    name: 'description',
+                    content: 'Página de login para o administratar informações de contato da Sirius Marmoraria'
+                },
+            ],
+        });
+    },
     data() {
         return {
             errorMessage: null,
