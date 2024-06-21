@@ -36,9 +36,11 @@
                         A <strong class="text-secondary font-weight-bold">Sirius Marmoraria</strong> se destaca por sua
                         missão de transformar a experiência da obra com amor e excelência. Nossa prioridade é oferecer
                         atendimento perfeito desde o início até a entrega final. Valores como excelência em atendimento,
-                        acabamento impecável e comprometimento com seu projeto são fundamentais para nós. <strong
+                        acabamento impecável e comprometimento com seu projeto são fundamentais para nós. Os clientes
+                        podem explorar uma variedade de materiais, desde mármores clássicos até granitos exóticos.
+                        Nossos consultores especializados estão prontos para orientar e inspirar. <strong
                             class="text-secondary font-weight-bold">Conte conosco para tornar seu projeto em algo
-                            extraordinário.</strong>
+                            extraordinário!</strong>
                         <v-container fluid>
                             <v-row align-content="center" justify="center">
                                 <v-col v-if="views.mission">
@@ -185,7 +187,8 @@
                                 </v-card-actions>
                             </v-card>
                         </v-dialog>
-                        <v-card class="my-4 elevation-24" @click="dialog = true, reviewDialog = filterAvaliations(review.id)">
+                        <v-card class="my-4 elevation-12"
+                            @click="dialog = true, reviewDialog = filterAvaliations(review.id)">
                             <v-card-title class="bg-secondary">
                                 <v-avatar class="mr-3 text-primary">
                                     <v-icon>mdi-account-circle</v-icon>
@@ -200,7 +203,7 @@
                                 <v-rating v-model="review.rating" background-color="transparent" color="amber" readonly
                                     density="compact"></v-rating>
                             </v-card-text>
-                            <v-divider class=""></v-divider>
+                            <v-divider></v-divider>
                             <v-card-actions class="d-flex justify-center bg-secondary">
                                 <v-icon color="primary">mdi-thumb-up-outline</v-icon>
                                 <span class="mx-2">{{ " " + review.likes }}</span>
@@ -364,7 +367,18 @@ export default {
         useHead({
             title: 'Página Inicial - Sirius Marmoraria',
             meta: [
-                { name: 'description', content: 'Descrição da página' },
+                {
+                    name: 'description',
+                    content: 'A Sirius Marmoraria e Revestimentos é uma empresa dinâmica e inovadora, nascida em 2017 da fusão das bem-sucedidas empresas “Ptostta Pisos e Revestimentos” e “Asignor Marmoraria”. Com sede em Campinas, SP, a Sirius se destaca no setor de pedras naturais, oferecendo soluções personalizadas e elegantes para seus clientes.'
+                },
+                {
+                    name: 'keywords',
+                    content: 'marmoraria, granito, mármore, serviços de pedra, Sirius Marmoraria, revestimentos, sirius, Sirius Marmoraria e Revestimentos, banheiro, cozinha, lareira, piso'
+                },
+                {
+                    name: 'robots',
+                    content: 'index, follow'
+                }
             ],
         });
     },
