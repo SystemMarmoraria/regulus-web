@@ -15,13 +15,13 @@
                     <v-container>
                         <v-row>
                             <v-col>
-                                <v-text-field v-model="phoneMask.phoneNumber" :rules="[
+                                <v-text-field v-model="phoneMask.phoneNumber" :disabled="disabled" :rules="[
                                     () => !!phoneMask.phoneNumber || 'O Numero do celular precisa ser preenchido',
                                 ]" prepend-icon="mdi-whatsapp" variant="solo" label="Celular"
                                     v-mask-phone.br></v-text-field>
                             </v-col>
                             <v-col>
-                                <v-text-field v-model="phoneMask.telPhoneNumber "  :rules="[
+                                <v-text-field v-model="phoneMask.telPhoneNumber " :disabled="disabled"  :rules="[
                                     () => !!phoneMask.telPhoneNumber  || 'O número do telefone precisa ser preenchido',
                                 ]" prepend-icon="mdi-phone" variant="solo" label="Telefone" v-mask="'(00) 00000-0000'"></v-text-field>
                             </v-col>
@@ -43,12 +43,12 @@
                         </v-row>
                         <v-row>
                             <v-col>
-                                <v-text-field v-model="contacts.linkFace" :rules="[
+                                <v-text-field v-model="contacts.linkFace" :disabled="disabled" :rules="[
                                     () => !!contacts.linkFace || 'O link do facebook precisa ser preenchido',
                                 ]" prepend-icon="mdi-facebook" variant="solo" label="Link do facebook"></v-text-field>
                             </v-col>
                             <v-col>
-                                <v-text-field v-model="contacts.linkInsta" :rules="[
+                                <v-text-field v-model="contacts.linkInsta" :disabled="disabled" :rules="[
                                     () => !!contacts.linkInsta || 'O link do instagram precisa ser preenchido',
                                 ]" prepend-icon="mdi-instagram" variant="solo"
                                     label="Link do instagram"></v-text-field>
@@ -58,7 +58,7 @@
                     <v-divider></v-divider>
                     <v-card-actions class="bg-secondary">
                         <v-spacer>
-                            <v-btn variant="tonal" :prepend-icon=" disabled ? 'mdi-circle-edit-outline':'mdi-content-save'" @click="putInfo(), disabled = !disabled" :color="disabled? 'primary' : 'green'">{{disabled ? 'Editar':'Salvar'}}</v-btn>
+                            <v-btn variant="tonal" :prepend-icon=" disabled ? 'mdi-circle-edit-outline':'mdi-content-save'" @click="disabled ? allowEdit() : putInfo()" :color="disabled? 'primary' : 'green'">{{disabled ? 'Editar':'Salvar'}}</v-btn>
                         </v-spacer>
                     </v-card-actions>
                 </v-form>
@@ -99,6 +99,7 @@ export default {
             message : null,
             showMessage : false,
             error: false,
+            disabled: true,
         }
     },
     mounted(){
@@ -124,12 +125,16 @@ export default {
             if(Response != null){
                 this.error = false;
                 this.message = "Informações atualizadas com sucesso"
+                this.disabled = true;
             }
         }).catch(error => {
             this.error = true;
             this.message = error
         })
         this.showMessage = true;
+    },
+    allowEdit(){
+        this.disabled = false;
     },
     logOut(){
         localStorage.clear();
