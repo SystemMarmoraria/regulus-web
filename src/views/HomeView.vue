@@ -373,7 +373,7 @@ export default {
                 },
                 {
                     name: 'keywords',
-                    content: 'marmoraria, granito, mármore, serviços de pedra, Sirius Marmoraria, revestimentos, sirius,  Sirius Marmoraria e Revestimentos'
+                    content: 'marmoraria, granito, mármore, serviços de pedra, Sirius Marmoraria, revestimentos, sirius, Sirius Marmoraria e Revestimentos, banheiro, cozinha, lareira, piso'
                 },
                 {
                     name: 'robots',
