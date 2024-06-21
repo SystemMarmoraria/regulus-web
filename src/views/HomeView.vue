@@ -1,29 +1,21 @@
 <template>
     <div>
-        <a name="home"></a>
+        <a id="home"></a>
         <v-app-bar color="secondary" :scroll-threshold="scroll" :elevation="10">
             <img src="images/logo-sirius.png" alt="sirius logo" width="10%">
             <v-spacer></v-spacer>
             <v-tabs class="text-primary" v-model="tab" density="comfortable">
-                <v-tab :hide-slider="true" value="home">
-                    <a href="#home">
+                <v-tab v-scroll-to="'#home'" :hide-slider="true" value="home">
                         <h4 class="text-primary">Home</h4>
-                    </a>
                 </v-tab>
-                <v-tab :hide-slider="true" value="about">
-                    <a href="#about">
+                <v-tab v-scroll-to="'#about'" :hide-slider="true" value="about">
                         <h4 class="text-primary">Sobre nós</h4>
-                    </a>
                 </v-tab>
-                <v-tab :hide-slider="true" value="portfolio">
-                    <a href="#portfolio">
+                <v-tab v-scroll-to="'#portfolio'" :hide-slider="true" value="portfolio">
                         <h4 class="text-primary">Produtos</h4>
-                    </a>
                 </v-tab>
-                <v-tab :hide-slider="true" value="contact">
-                    <a href="#contact">
+                <v-tab v-scroll-to="'#contact'" :hide-slider="true" value="contact">
                         <h4 class="text-primary">Contato</h4>
-                    </a>
                 </v-tab>
             </v-tabs>
         </v-app-bar>
@@ -33,7 +25,7 @@
                     Qualidade e excelência em cada detalhe.
                 </h1>
             </div>
-            <a name="about"></a>
+            <a id="about"></a>
         </v-parallax>
         <h2 class="text-h4 mb-12 mt-12">Uma empresa voltada ao consumidor</h2>
 
@@ -140,7 +132,7 @@
                                 </v-col>
                             </v-row>
                         </v-container>
-                        <a name="portfolio"></a>
+                        <a id="portfolio"></a>
                     </v-card>
                 </v-col>
                 <!--
@@ -222,7 +214,7 @@
                 </v-row>
             </v-card>
         </v-container>
-        <a name="contact"></a>
+        <a id="contact"></a>
         <v-parallax class="gradient mt-12" src="/images/Sirius.png" style="height: 40em; margin-top: 20px;">
             <div class="d-flex flex-column justify-center align-center" ref="banner">
                 <h2 class="text-h4 text-secondary mb-12 mt-12">Entre em contato conosco</h2>

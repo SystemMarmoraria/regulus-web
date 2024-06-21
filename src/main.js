@@ -9,6 +9,19 @@ import axiosPlugin from './plugins/axios';
 
 const app = createApp(App);
 
+app.directive('scroll-to', {
+    mounted(el, binding) {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = binding.value;
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
+  });
+
 app.use(axiosPlugin);
 
 loadFonts();
