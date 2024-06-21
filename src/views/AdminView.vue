@@ -74,7 +74,7 @@ import { useHead } from '@vueuse/head';
 export default {
     setup() {
         useHead({
-            title: 'Login - Sirius Marmoraria',
+            title: 'Administrador - Sirius Marmoraria',
             meta: [
                 {
                     name: 'description',
