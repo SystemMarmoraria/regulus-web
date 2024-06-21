@@ -6,16 +6,16 @@
             <v-spacer></v-spacer>
             <v-tabs class="text-primary" v-model="tab" density="comfortable">
                 <v-tab v-scroll-to="'#Incio'" :hide-slider="true" value="home">
-                        <h4 class="text-primary">Home</h4>
+                    <h4 class="text-primary">Home</h4>
                 </v-tab>
                 <v-tab v-scroll-to="'#Sobre-nos'" :hide-slider="true" value="about">
-                        <h4 class="text-primary">Sobre nós</h4>
+                    <h4 class="text-primary">Sobre nós</h4>
                 </v-tab>
                 <v-tab v-scroll-to="'#Produtos'" :hide-slider="true" value="portfolio">
-                        <h4 class="text-primary">Produtos</h4>
+                    <h4 class="text-primary">Produtos</h4>
                 </v-tab>
                 <v-tab v-scroll-to="'#Contato'" :hide-slider="true" value="contact">
-                        <h4 class="text-primary">Contato</h4>
+                    <h4 class="text-primary">Contato</h4>
                 </v-tab>
             </v-tabs>
         </v-app-bar>
@@ -154,8 +154,8 @@
             <h4 class="text-secondary mt-2">Clique para visualizar as reviews</h4>
             <v-card variant="tonal" class="mt-12" ref="testimonials">
                 <v-row class="mx-4">
-                    <v-col cols="12" sm="6" md="6" lg="4" xl="2" v-for="(review, index) in reviews" :key="index" class="cursor-pointer"
-                        v-model="review.id">
+                    <v-col cols="12" sm="6" md="6" lg="4" xl="2" v-for="(review, index) in reviews" :key="index"
+                        class="cursor-pointer" v-model="review.id">
                         <v-dialog v-model="dialog">
                             <v-card class="my-4">
                                 <v-card-title class="bg-secondary">
@@ -185,7 +185,7 @@
                                 </v-card-actions>
                             </v-card>
                         </v-dialog>
-                        <v-card class="my-4" @click="dialog = true, reviewDialog = filterAvaliations(review.id)">
+                        <v-card class="my-4 elevation-24" @click="dialog = true, reviewDialog = filterAvaliations(review.id)">
                             <v-card-title class="bg-secondary">
                                 <v-avatar class="mr-3 text-primary">
                                     <v-icon>mdi-account-circle</v-icon>
@@ -197,8 +197,8 @@
                                 {{ review.comment }}
                             </v-card-subtitle>
                             <v-card-text>
-                                <v-rating v-model="review.rating" background-color="transparent" color="amber"
-                                    readonly density="compact"></v-rating>
+                                <v-rating v-model="review.rating" background-color="transparent" color="amber" readonly
+                                    density="compact"></v-rating>
                             </v-card-text>
                             <v-divider class=""></v-divider>
                             <v-card-actions class="d-flex justify-center bg-secondary">
@@ -267,6 +267,7 @@
 <script>
 import anime from 'animejs';
 import axios from 'axios';
+import { useHead } from '@vueuse/head';
 
 export default {
     data() {
@@ -275,10 +276,10 @@ export default {
             subject: '',
             message: '',
             colsAbout: {
-                sm: "1", 
-                md: "1", 
-                lg:"1",
-                xl:"1"
+                sm: "1",
+                md: "1",
+                lg: "1",
+                xl: "1"
             },
             contacts: {
                 email: null,
@@ -358,6 +359,14 @@ export default {
     },
     mounted() {
         this.animateElementsOnLoad();
+    },
+    setup() {
+        useHead({
+            title: 'Página Inicial - Sirius Marmoraria',
+            meta: [
+                { name: 'description', content: 'Descrição da página' },
+            ],
+        });
     },
     methods: {
         getInfo() {
