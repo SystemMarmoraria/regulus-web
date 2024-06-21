@@ -15,14 +15,14 @@
                     <v-container>
                         <v-row>
                             <v-col>
-                                <v-text-field :disabled="disabled" v-model="contacts.mobile_phone_number" :rules="[
-                                    () => !!contacts.mobile_phone_number || 'O Numero do celular precisa ser preenchido',
+                                <v-text-field v-model="phoneMask.phoneNumber" :rules="[
+                                    () => !!phoneMask.phoneNumber || 'O Numero do celular precisa ser preenchido',
                                 ]" prepend-icon="mdi-whatsapp" variant="solo" label="Celular"
                                     v-mask-phone.br></v-text-field>
                             </v-col>
                             <v-col>
-                                <v-text-field :disabled="disabled" v-model="phoneNumberMask "  :rules="[
-                                    () => !!phoneNumberMask  || 'O número do telefone precisa ser preenchido',
+                                <v-text-field v-model="phoneMask.telPhoneNumber "  :rules="[
+                                    () => !!phoneMask.telPhoneNumber  || 'O número do telefone precisa ser preenchido',
                                 ]" prepend-icon="mdi-phone" variant="solo" label="Telefone" v-mask="'(00) 00000-0000'"></v-text-field>
                             </v-col>
                         </v-row>
@@ -43,12 +43,12 @@
                         </v-row>
                         <v-row>
                             <v-col>
-                                <v-text-field :disabled="disabled" v-model="contacts.link_face" :rules="[
+                                <v-text-field v-model="contacts.linkFace" :rules="[
                                     () => !!contacts.linkFace || 'O link do facebook precisa ser preenchido',
                                 ]" prepend-icon="mdi-facebook" variant="solo" label="Link do facebook"></v-text-field>
                             </v-col>
                             <v-col>
-                                <v-text-field :disabled="disabled" v-model="contacts.link_insta" :rules="[
+                                <v-text-field v-model="contacts.linkInsta" :rules="[
                                     () => !!contacts.linkInsta || 'O link do instagram precisa ser preenchido',
                                 ]" prepend-icon="mdi-instagram" variant="solo"
                                     label="Link do instagram"></v-text-field>
@@ -63,6 +63,17 @@
                     </v-card-actions>
                 </v-form>
             </v-card>
+            <v-alert
+                        v-model="showMessage"
+                        :color="error ? 'error' : 'success'"
+                        dark
+                        fixed bottom
+                    >
+                        <span v-if="message">{{ message }}</span>
+                        <v-btn class="ml-4" icon @click="showMessage = false">
+                        <v-icon>mdi-close</v-icon>
+                        </v-btn>
+                    </v-alert>
         </v-container>
     </div>
 </template>
@@ -77,12 +88,17 @@ export default {
                 email: null,
                 address: null,
                 phoneNumber: null,
-                telPhonenumber: null,
+                telPhoneNumber: null,
                 linkFace: null,
                 linkInsta: null,
             },
-            phoneNumberMask : null,
-            disabled: true,
+            phoneMask : {
+                phoneNumber : null,
+                telPhoneNumber: null,
+            },
+            message : null,
+            showMessage : false,
+            error: false,
         }
     },
     mounted(){
@@ -96,19 +112,24 @@ export default {
     getInfo(){
         axios.get('api/contactInformation').then(Response => {
             this.contacts = Response.data;
-            this.phoneNumberMask = this.contacts.phoneNumber;
-        }).catch(error => {
-            console.log(error);
-        })
+            this.phoneMask.phoneNumber = this.contacts.phoneNumber;
+            this.phoneMask.telPhoneNumber = this.contacts.telPhoneNumber;
+        }).catch()
     },
     putInfo(){
-        this.contacts.phoneNumberMask  = this.phoneNumberMask .replace(/\D/g, "");
+        this.contacts.phoneNumber  = this.phoneMask.phoneNumber.replace(/\D/g, "");
+        this.contacts.telPhoneNumber  = this.phoneMask.telPhoneNumber.replace(/\D/g, "");
 
-        axios.put('api/contactInformation', this.contacts).then(Response => {
-            console.log(Response.data)
+        axios.put('api/contactInformation', this.contacts).then( Response => {
+            if(Response != null){
+                this.error = false;
+                this.message = "Informações atualizadas com sucesso"
+            }
         }).catch(error => {
-            console.log(error);
+            this.error = true;
+            this.message = error
         })
+        this.showMessage = true;
     },
     logOut(){
         localStorage.clear();

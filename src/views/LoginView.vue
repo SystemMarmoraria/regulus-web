@@ -19,6 +19,7 @@
                                             <v-col cols="12">
                                                 <v-text-field v-model="form.password" label="Senha" type="password"
                                                     variant="solo"></v-text-field>
+                                                    <p style="color: #f34336;" v-if="errorLogin">Login Inválido!</p>
                                             </v-col>
                                         </v-row>
                                         </v-container>
@@ -30,7 +31,6 @@
                                             </v-col>
                                         </v-row>
                                     </v-card-actions>
-                                    
                                 </v-form>
                             </v-card>
                         </v-col>
@@ -51,15 +51,19 @@ export default {
             form: {
                 userName: null,
                 password: null
-            }
+            },
+            errorLogin: false,
         };
     },
     methods: {
         login(){
+            console.log(this.form)
             axios.post('api/Users/login', this.form, null).then(response => {
                 localStorage.setItem('accessToken', response.data);
+                this.errorLogin = false;
             }).catch(error => {
                 this.errorMessage = error.response.status == 404 ? error.response.data : "Erro ao realizar login";
+                this.errorLogin = true;
             })
         }
     }
