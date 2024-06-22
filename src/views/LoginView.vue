@@ -75,7 +75,7 @@ export default {
                 this.$store.commit('setToken', localStorage.getItem('accessToken'));
                 this.errorLogin = false;
             }).catch(error => {
-                this.$store.commit('setIsAuthenticated', response.status);
+                this.$store.commit('setIsAuthenticated', error.response.status);
                 this.$store.commit('setToken', localStorage.getItem('accessToken'));
                 this.errorMessage = error.response.status == 404 ? error.response.data : "Erro ao realizar login";
                 this.$toast.error(this.errorMessage);
