@@ -68,17 +68,27 @@ export default {
     },
     methods: {
         login(){
-            console.log(this.form)
+            let status = null;
             axios.post('api/Users/login', this.form, null).then(response => {
+                status = response.status;
                 localStorage.setItem('accessToken', response.data);
-                this.$store.commit('setIsAuthenticated', response.status);
+                this.$store.commit('setIsAuthenticated', status);
                 this.$store.commit('setToken', localStorage.getItem('accessToken'));
                 this.errorLogin = false;
             }).catch(error => {
-                this.$store.commit('setIsAuthenticated', error.response.status);
+                if(error != null){
+                    status = error.response.status;
+                    this.errorMessage = status == 404 ? error.response.data : "Erro ao realizar login";
+                    this.$toast.error(this.errorMessage);
+                }
+            }).finally(() => {
+                this.$store.commit('setIsAuthenticated', status);
                 this.$store.commit('setToken', localStorage.getItem('accessToken'));
-                this.errorMessage = error.response.status == 404 ? error.response.data : "Erro ao realizar login";
-                this.$toast.error(this.errorMessage);
+            
+                if(status == 200){
+                    console.log('entrou')
+                    this.$router.push('/admin');
+                }
             })
         }
     }

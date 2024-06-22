@@ -30,17 +30,18 @@ const router = createRouter({
 })
 
 
-function isLogged(status) {
-    const token = this.$store.getters.token;
-    return !!token && status === 201;
-}
+// function isLogged(status) {
+//     console.log(status)
+//     const token = this.$store.getters.token;
+//     return !!token && status === 200;
+// }
 
-router.beforeEach((to, from, next) => {
-    if (to.meta.requiresAuth && !isLogged(this.$store.getters.isAuthenticated)) {
-        next('/login');
-    } else {
-        next();
-    }
-});
+// router.beforeEach((to, from, next) => {
+//     if (to.meta.requiresAuth && !isLogged(this.$store.getters.isAuthenticated)) {
+//         next('/login');
+//     } else {
+//         next();
+//     }
+// });
 
 export default router
