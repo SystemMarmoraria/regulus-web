@@ -17,7 +17,8 @@ const routes = [
     {
         path: '/admin',
         name: 'Admin',
-        component: AdminView
+        component: AdminView,
+        meta: { requiresAuth: true }
     },
 
 ]
@@ -26,5 +27,19 @@ const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes
 })
+
+
+function isLogged(status) {
+    const token = this.$store.getters.token;
+    return !!token && status === 201;
+}
+
+router.beforeEach((to, from, next) => {
+    if (to.meta.requiresAuth && !isLogged(this.$store.getters.isAuthenticated)) {
+        next('/login');
+    } else {
+        next('/admin');
+    }
+});
 
 export default router

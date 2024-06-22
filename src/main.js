@@ -8,6 +8,7 @@ import anime from 'animejs';
 import axiosPlugin from './plugins/axios';
 import { createHead } from '@vueuse/head';
 import ToastPlugin from 'vue-toast-notification';
+import store from './store';
 
 const head = createHead();
 const app = createApp(App);
@@ -30,7 +31,7 @@ app.use(axiosPlugin);
 loadFonts();
 
 app.provide('$anime', anime);
-app.use(head).use(router).use(vuetify).use(VueMask).use(ToastPlugin, { position: 'top-right', duration: 4000, dismissible: true });
+app.use(store).use(head).use(router).use(vuetify).use(VueMask).use(ToastPlugin, { position: 'top-right', duration: 4000, dismissible: true });
 
 app.mount('#app');
 

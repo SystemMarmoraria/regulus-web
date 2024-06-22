@@ -71,8 +71,12 @@ export default {
             console.log(this.form)
             axios.post('api/Users/login', this.form, null).then(response => {
                 localStorage.setItem('accessToken', response.data);
+                this.$store.commit('setIsAuthenticated', response.status);
+                this.$store.commit('setToken', localStorage.getItem('accessToken'));
                 this.errorLogin = false;
             }).catch(error => {
+                this.$store.commit('setIsAuthenticated', response.status);
+                this.$store.commit('setToken', localStorage.getItem('accessToken'));
                 this.errorMessage = error.response.status == 404 ? error.response.data : "Erro ao realizar login";
                 this.$toast.error(this.errorMessage);
             })

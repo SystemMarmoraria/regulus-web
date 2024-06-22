@@ -3,7 +3,7 @@
         <v-app-bar color="secondary" :scroll-threshold="scroll" :elevation="10">
             <h2 style="margin-left: 5px;">AdminSirius</h2>
             <v-spacer></v-spacer>
-            <v-btn append-icon="mdi-logout" @click="logOut()" variant="plain">Sair</v-btn>
+            <v-btn append-icon="mdi-logout" @click="logOut()" to="/login" variant="plain">Sair</v-btn>
         </v-app-bar>
         <v-container>
             <v-card class="mt-6">
