@@ -222,13 +222,13 @@
                 <v-card variant="tonal" width="95%">
                     <v-container>
                         <v-row>
-                            <v-col cols="5">
-                                <v-card-title class="text-left text-h5">Localização <v-icon size="small"
+                            <v-col cols="6">
+                                <v-card-title class="text-left text-h5 text-wrap">Localização <v-icon size="small"
                                         icon="mdi-map-marker-outline"></v-icon></v-card-title>
-                                <v-card-text class="mt-4 text-left">Avenida Benedito de Campos, 811 -
+                                <v-card-text class="mt-4 text-left text-wrap">Avenida Benedito de Campos, 811 -
                                     Jardim do Trevo, <br> Campinas - SP
                                     CEP:13.030-100</v-card-text>
-                                <v-card-title class="mt-5 mb-1 text-left text-h5">Siga-Nos em nossas redes
+                                <v-card-title class="mt-5 mb-1 text-left text-h5 text-wrap">Siga-Nos em nossas redes
                                     sociais</v-card-title>
                                 <v-card-actions class="d-flex justify-start">
                                     <a href="https://www.facebook.com/siriusmr/?locale=pt_BR" target="_blank"><v-icon
@@ -236,17 +236,20 @@
                                     <a href="https://www.instagram.com/siriusmrev/?hl=pt" target="_blank"><v-icon
                                             class="cursor-pointer" size="x-large" icon="mdi-instagram" end></v-icon></a>
                                 </v-card-actions>
-                                <v-card-title class="text-left text-h5 mt-5 mb-1">Contato telefônico</v-card-title>
+                                <v-card-title class="text-left text-h5 mt-5 mb-1 text-wrap">Contato
+                                    telefônico</v-card-title>
                                 <v-card-text class="text-left"><v-icon size="x-small" variant="text"
                                         icon="mdi-phone"></v-icon>{{ ' Telefone fixo: (19) 2519-3131' }}</v-card-text>
                                 <v-card-actions class="d-flex justify-start">
-                                    <v-btn append-icon="mdi-whatsapp" @click="sendWhatsApp" class="bg-green">Enviar
-                                        menssagem pelo
-                                        Whatsapp</v-btn>
+                                    <v-btn append-icon="mdi-whatsapp"
+                                        style="white-space: normal; overflow: hidden; text-overflow: ellipsis;"
+                                        @click="sendWhatsApp" class="bg-green">
+                                        Enviar mensagem pelo Whatsapp
+                                    </v-btn>
                                 </v-card-actions>
                             </v-col>
-                            <v-col cols="7">
-                                <h3 class="mb-4">{{ 'Formulário de contato ' }}<v-icon size="small"
+                            <v-col cols="6">
+                                <h3 class="mb-4 text-wrap">{{ 'Formulário de contato ' }}<v-icon size="small"
                                         icon="mdi-email-outline"></v-icon></h3>
                                 <form @submit.prevent="sendEmail">
                                     <v-text-field :disabled="true" variant="outlined" type="email" v-model="toEmail"

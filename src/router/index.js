@@ -8,6 +8,7 @@ const routes = [
         path: '/',
         name: 'Home',
         component: HomeView,
+        meta: { requiresAuth: false }
     },
     {
         path: '/login',
@@ -38,7 +39,7 @@ router.beforeEach((to, from, next) => {
     if (to.meta.requiresAuth && !isLogged(this.$store.getters.isAuthenticated)) {
         next('/login');
     } else {
-        next('/admin');
+        next();
     }
 });
 
