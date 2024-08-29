@@ -356,7 +356,7 @@ export default {
                     username: 'Rubens Lima',
                     avatar: 'https://via.placeholder.com/100',
                     rating: 5,
-                    comment: 'É ok, poderia ser melhor.',
+                    comment: 'É muito bom!',
                     likes: 2,
                     dislikes: 0
                 }
@@ -365,6 +365,9 @@ export default {
     },
     mounted() {
         this.animateElementsOnLoad();
+    },
+    created() {
+        this.contacts = this.$store.getters.data;
     },
     setup() {
         useHead({

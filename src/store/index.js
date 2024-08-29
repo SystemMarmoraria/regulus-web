@@ -3,6 +3,7 @@ import { createStore } from "vuex";
 const state = {
   token: null,
   isAuthenticated: null,
+  data: null,
 };
 
 const mutations = {
@@ -11,6 +12,9 @@ const mutations = {
   },
   setToken(state, newToken) {
     state.token = newToken;
+  },
+  setData(state, newData) {
+    state.data = newData;
   },
 };
 
@@ -21,6 +25,9 @@ const actions = {
   updateToken({ commit }, newToken) {
     commit('setToken', newToken);
   },
+  updateData({ commit }, newData) {
+    commit('setData', newData);
+  },
   updateIsAuthenticated({ commit }, newIsAuthenticated) {
     commit('setIsAuthenticated', newIsAuthenticated);
   },
@@ -29,6 +36,7 @@ const actions = {
 const getters = {
   getToken: state => state.token,
   getIsAuthenticated: state => state.isAuthenticated,
+  getData: state => state.data,
 };
 
 export default createStore({
