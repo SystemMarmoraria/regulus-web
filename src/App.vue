@@ -1,23 +1,45 @@
 <template>
   <v-app>
-    <v-navigation-drawer app v-model="drawer" :mini-variant="mini" permanent></v-navigation-drawer>
-    <v-main class="bg-primary" ref="main">
+    <v-app-bar color="primary" :scroll-threshold="scroll" :elevation="10">
+            <v-img src="images/logo-sirius.png" alt="sirius logo" max-width="150px" class="mr-4"></v-img>
+            <v-spacer></v-spacer>
+            <v-tabs class="text-primary" v-model="tab" density="comfortable">
+                <v-tab v-scroll-to="'#Incio'" :hide-slider="true" value="home">
+                    <h4 class="text-primary">Home</h4>
+                </v-tab>
+                <v-tab v-scroll-to="'#Sobre-nos'" :hide-slider="true" value="about">
+                    <h4 class="text-primary">Sobre nós</h4>
+                </v-tab>
+                <v-tab v-scroll-to="'#Produtos'" :hide-slider="true" value="portfolio">
+                    <h4 class="text-primary">Produtos</h4>
+                </v-tab>
+                <v-tab v-scroll-to="'#Contato'" :hide-slider="true" value="contact">
+                    <h4 class="text-primary">Contato</h4>
+                </v-tab>
+            </v-tabs>
+        </v-app-bar>
+    <v-navigation-drawer app v-model="drawer" :mini-variant="mini" permanent color="#40508B">
+      <v-list density="compact" nav>
+        <v-list-item>Cadastros</v-list-item>
+        <v-list-item>Orçamentos</v-list-item>
+        <v-list-item>Calculadora</v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    <v-main class="bg-white" ref="main">
       <router-view></router-view>
     </v-main>
-    <v-footer app color="secondary" class="d-flex justify-center" ref="footer">
+    <v-footer app color="#D9D9D9" class="d-flex justify-center" ref="footer">
       <p class="text-primary">&copy; {{ year }} Sirius Marmoraria e Revestimentos. Todos os direitos reservados.</p>
     </v-footer>
   </v-app>
 </template>
 
 <script>
-import anime from 'animejs';
-
 export default {
   name: 'App',
   data() {
     return {
-      drawer: false,
+      drawer: true,
       mini: true,
       year: null,
     };
@@ -26,68 +48,6 @@ export default {
     this.year = new Date();
     this.year = this.year.getFullYear();
   },
-  mounted() {
-    // Animação de entrada para o drawer
-    this.animateElement('slideInLeft', this.$refs.drawer);
-
-    // Animação de entrada para o conteúdo principal
-    this.animateElement('fadeIn', this.$refs.main.$el);
-
-    // Animação de entrada para o rodapé
-    this.animateElement('slideInUp', this.$refs.footer.$el);
-  },
-  methods: {
-    animateElement(animation, element) {
-      if (!element) return; // Verifica se o elemento é nulo
-
-      const animations = {
-        slideInLeft: {
-          translateX: ['-100%', '0'],
-          opacity: [0, 1]
-        },
-        fadeInDown: {
-          translateY: ['-100%', '0'],
-          opacity: [0, 1]
-        },
-        fadeIn: {
-          opacity: [0, 1]
-        },
-        slideInUp: {
-          translateY: ['100%', '0'],
-          opacity: [0, 1]
-        }
-        // Adicione mais animações conforme necessário
-      };
-
-      const selectedAnimation = animations[animation];
-
-      if (!selectedAnimation) {
-        console.error('Animation not found');
-        return;
-      }
-
-      anime({
-        targets: element,
-        ...selectedAnimation,
-        duration: 1000,
-        easing: 'easeOutExpo',
-        delay: anime.stagger(100),
-        direction: 'normal',
-        loop: false,
-        autoplay: true,
-        begin: function (anim) {
-          anim.animatables.forEach(function (animatable) {
-            animatable.target.style.visibility = 'visible';
-          });
-        },
-        complete: function (anim) {
-          anim.animatables.forEach(function (animatable) {
-            animatable.target.style.visibility = 'visible';
-          });
-        }
-      });
-    }
-  }
 };
 </script>
 
